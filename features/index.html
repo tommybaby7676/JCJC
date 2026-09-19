@@ -326,8 +326,12 @@
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
       </div>
 
-      <!-- 手機端漢堡圖示 -->
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      <!-- 手機端功能按鈕群 (語言 + 立即註冊 + 漢堡) -->
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button class="lang" id="langBtnTop" style="padding:4px 8px; font-size:0.75rem;">EN</button>
+        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="註冊" href="javascript:void(0);" style="padding:6px 12px !important; font-size:0.78rem !important;">Register</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      </div>
     </div>
   </nav>
 
@@ -533,8 +537,10 @@
       
       const pcBtn = document.getElementById('langBtn');
       const drawerBtn = document.getElementById('langBtnDrawer');
+      const topBtn = document.getElementById('langBtnTop');
       if (pcBtn) pcBtn.textContent = label;
       if (drawerBtn) drawerBtn.textContent = label;
+      if (topBtn) topBtn.textContent = label;
 
       document.querySelectorAll('[data-en]').forEach(function(el) {
         const text = (currentLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
@@ -545,8 +551,10 @@
 
     const pcLangBtn = document.getElementById('langBtn');
     const drawerLangBtn = document.getElementById('langBtnDrawer');
+    const topLangBtn = document.getElementById('langBtnTop');
     if (pcLangBtn) pcLangBtn.addEventListener('click', switchLanguage);
     if (drawerLangBtn) drawerLangBtn.addEventListener('click', switchLanguage);
+    if (topLangBtn) topLangBtn.addEventListener('click', switchLanguage);
 
     // 3. 🎯 動態跳轉引擎 (廣告參數無損繼承)
     function getFinalTargetUrl(customUrl) {
