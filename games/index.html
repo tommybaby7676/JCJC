@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>MATE369 | Official Certified Game Providers & Top Pokies Hall</title>
+  <meta name="description" content="Explore certified online casino game providers at MATE369 Australia. Discover top-rated pokies, live tables, and arcade games from BNG, Pragmatic Play, PG Soft, SBOBET, and MT Live." />
+  <link rel="icon" href="../logo.ico" />
+
+  <style>
+    :root {
+      --bg-dark: #050d0a;
+      --card-bg: rgba(9, 26, 19, 0.85);
+      --card-border: rgba(0, 230, 118, 0.25);
+      --card-hover-border: #00e676;
+      --primary-green: #00e676;
+      --accent-gold: #ffd700;
+      --gold-gradient: linear-gradient(135deg, #ffe066 0%, #f59e0b 100%);
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.5;
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(0, 230, 118, 0.08) 0%, transparent 60%),
+        linear-gradient(rgba(0, 230, 118, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 230, 118, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 30px 30px, 30px 30px;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* 頂部導航欄 (常駐) */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(5, 13, 10, 0.85);
+      border-bottom: 1px solid rgba(0, 230, 118, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .nav-logo img { height: 38px; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-links a { font-size: 14px; font-weight: 600; color: #cbd5e1; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary-green); }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-register-nav {
+      background: var(--primary-green);
+      color: #000;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 6px;
+      box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+      cursor: pointer;
+    }
+
+    /* 容器架構 */
+    .container { max-width: 1200px; margin: 0 auto; padding: 30px 16px 80px; }
+
+    /* Hero Banner 標題區 */
+    .hero-header { text-align: center; margin-bottom: 40px; }
+    .hero-tag {
+      display: inline-block;
+      padding: 5px 14px;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      color: var(--primary-green);
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+    .hero-header h1 {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      background: linear-gradient(180deg, #fff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .hero-header p { font-size: 15px; color: var(--text-muted); max-width: 720px; margin: 0 auto; }
+
+    /* 6 大廠商網格 (2x3 或 3x2) */
+    .provider-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    @media (max-width: 900px) { .provider-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+    @media (max-width: 580px) { .provider-grid { grid-template-columns: 1fr; gap: 16px; } }
+
+    .provider-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .provider-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-hover-border);
+      box-shadow: 0 10px 25px rgba(0, 230, 118, 0.15);
+    }
+    .card-thumb {
+      width: 100%;
+      height: 170px;
+      background: #0d1e15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .provider-card:hover .card-thumb img { transform: scale(1.05); }
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      color: var(--accent-gold);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-body h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; color: #fff; }
+    .card-body p { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4; }
+    .card-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 12px;
+    }
+    .action-label { font-size: 12px; color: var(--primary-green); font-weight: 700; display: flex; align-items: center; gap: 4px; }
+    .action-tag { font-size: 11px; color: #64748b; background: rgba(255, 255, 255, 0.05); padding: 2px 6px; border-radius: 4px; }
+
+    /* 彈窗 (Modal) 結構 */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-container {
+      background: #091a13;
+      border: 1px solid var(--primary-green);
+      box-shadow: 0 0 35px rgba(0, 230, 118, 0.25);
+      border-radius: 16px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 28px;
+      position: relative;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #fff; }
+    .modal-title { font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+    .modal-subtitle { color: var(--accent-gold); font-size: 13px; font-weight: bold; margin-bottom: 18px; }
+    .modal-content { font-size: 14px; color: #cbd5e1; line-height: 1.7; margin-bottom: 24px; }
+    .modal-content h4 { color: var(--primary-green); margin: 14px 0 6px; font-size: 15px; }
+    .modal-content ul { padding-left: 18px; margin-bottom: 12px; }
+    .modal-content li { margin-bottom: 4px; }
+    .modal-cta-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--primary-green);
+      color: #000;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 14px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+      cursor: pointer;
+    }
+
+    /* 頁尾轉換卡片 (與首頁一致) */
+    .cta-footer-card {
+      background: linear-gradient(135deg, rgba(9, 26, 19, 0.95) 0%, rgba(5, 13, 10, 0.95) 100%);
+      border: 1px solid rgba(0, 230, 118, 0.3);
+      border-radius: 16px;
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .cta-footer-card h2 { font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+    .cta-footer-card p { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto 24px; }
+    .btn-big-claim {
+      display: inline-block;
+      background: var(--primary-green);
+      color: #000;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 14px 36px;
+      border-radius: 8px;
+      box-shadow: 0 0 25px rgba(0, 230, 118, 0.5);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 常駐導航欄 -->
+  <header class="navbar">
+    <a href="../" class="nav-logo">
+      <img src="../logo.webp" alt="MATE369" />
+    </a>
+    <nav class="nav-links">
+      <a href="../" data-en="Home" data-zh="首頁">Home</a>
+      <a href="./" class="active" data-en="Games" data-zh="精選遊戲">Games</a>
+      <button class="lang-btn" id="langToggle">中文</button>
+      <a class="btn-register-nav track-outbound" data-href="https://www.mate369.com/Register" data-en="REGISTER" data-zh="立即註冊">REGISTER</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Hero 標題 -->
+    <div class="hero-header">
+      <div class="hero-tag" data-en="100% Certified Platforms" data-zh="國際合規認證大廠">100% Certified Platforms</div>
+      <h1 data-en="PREMIUM GAME PROVIDERS" data-zh="頂級遊戲廠商大廳">PREMIUM GAME PROVIDERS</h1>
+      <p data-en="Explore high-RTP slots, live tables, and specialty arcade games certified for Australian players. Click any provider to inspect RTP data and game portfolio." 
+         data-zh="暢玩專為澳洲玩家嚴選的頂級高 RTP 機台、真人視訊及街機遊戲。點擊任一廠商即可查看官方合規認證數據與熱門遊戲詳情。">
+        Explore high-RTP slots, live tables, and specialty arcade games certified for Australian players. Click any provider to inspect RTP data and game portfolio.
+      </p>
+    </div>
+
+    <!-- 6 大廠商網格 -->
+    <div class="provider-grid">
+      <!-- 1. BNG -->
+      <div class="provider-card" onclick="openModal('bng')">
+        <div class="card-thumb">
+          <span class="card-badge">Hold & Win</span>
+          <img src="../bng.webp" alt="BNG Pokies" onerror="this.src='../b1.webp'" />
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>BNG (3 Oaks)</h3>
+            <p data-en="Famous for Hold and Win progressive jackpots and high hit frequencies." data-zh="以 Hold and Win 連環累積彩金機制與極高出獎頻率聞名全澳洲。">
+              Famous for Hold and Win progressive jackpots and high hit frequencies.
+            </p>
+          </div>
+          <div class="card-action">
+            <span class="action-label" data-en="View Review & RTP >" data-zh="查看評測與 RTP >">View Review & RTP ></span>
+            <span class="action-tag">RTP 96.5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Pragmatic Play -->
+      <div class="provider-card" onclick="openModal('pp')">
+        <div class="card-thumb">
+          <span class="card-badge">Mega Multiplier</span>
+          <img src="../pp.webp" alt="Pragmatic Play" onerror="this.src='../b2.webp'" />
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>Pragmatic Play</h3>
+            <p data-en="Home of iconic tumbling reels and huge multi-thousand multipliers." data-zh="全球爆款之王，專利無邊界消行掉落機制與上千倍震撼乘算倍率。">
+              Home of iconic tumbling reels and huge multi-thousand multipliers.
+            </p>
+          </div>
+          <div class="card-action">
+            <span class="action-label" data-en="View Review & RTP >" data-zh="查看評測與 RTP >">View Review & RTP ></span>
+            <span class="action-tag">RTP 96.7%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. PG Soft -->
+      <div class="provider-card" onclick="openModal('pg')">
+        <div class="card-thumb">
+          <span class="card-badge">Mobile First</span>
+          <img src="../pg.webp" alt="PG Soft" onerror="this.src='../b3.webp'" />
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>PG Soft</h3>
+            <p data-en="Cinematic 3D portrait gameplay custom-engineered for mobile devices." data-zh="專為手機直式螢幕打造的極致 3D 視覺與流暢消行連續暴擊機制。">
+              Cinematic 3D portrait gameplay custom-engineered for mobile devices.
+            </p>
+          </div>
+          <div class="card-action">
+            <span class="action-label" data-en="View Review & RTP >" data-zh="查看評測與 RTP >">View Review & RTP ></span>
+            <span class="action-tag">RTP 97.1%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. SBOBET 體育 -->
+      <div class="provider-card" onclick="openModal('sbo')">
+        <div class="card-thumb">
+          <span class="card-badge">Live Sports</span>
+          <img src="../sports.webp" alt="SBOBET Sports" onerror="this.src='../b1.webp'" />
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>SBOBET Sports</h3>
+            <p data-en="Official sportsbook offering instant odds for AFL, NRL, Cricket & Soccer." data-zh="享譽全球的頂尖盤口，即時涵蓋澳洲 AFL、板球、NBA 與全球滾球。">
+              Official sportsbook offering instant odds for AFL, NRL, Cricket & Soccer.
+            </p>
+          </div>
+          <div class="card-action">
+            <span class="action-label" data-en="View Markets >" data-zh="查看盤口詳情 >">View Markets ></span>
+            <span class="action-tag">Global Bookmaker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. MT 真人視訊 -->
+      <div class="provider-card" onclick="openModal('mt')">
+        <div class="card-thumb">
+          <span class="card-badge">4K Ultra HD</span>
+          <img src="../view.webp" alt="MT Live Casino" onerror="this.src='../b2.webp'" />
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>MT Live Casino</h3>
+            <p data-en="Bilingual live dealers streaming 4K Baccarat, Roulette & Speed Sic Bo." data-zh="4K 超高清零延遲視訊，配備專業雙語荷官與即時防窺咪牌百家樂。">
+              Bilingual live dealers streaming 4K Baccarat, Roulette & Speed Sic Bo.
+            </p>
+          </div>
+          <div class="card-action">
+            <span class="action-label" data-en="View Tables >" data-zh="查看桌台詳情 >">View Tables ></span>
+            <span class="action-tag">Zero Latency</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. 街機捕魚大廳 -->
+      <div class="provider-card" onclick="openModal('fish')">
+        <div class="card-thumb">
+          <span class="card-badge">Arcade Pokies</span>
+          <img src="../FS.webp" alt="Fish Hunter Hall" onerror="this.src='../b3.webp'" />
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>Fish Hunter Hall</h3>
+            <p data-en="Multiplayer skill-based arcade shooters with 1000x multiplier bosses." data-zh="多人同屏即時對戰街機，鎖定電磁砲與萬倍深海巨獸瞬間秒殺爆分。">
+              Multiplayer skill-based arcade shooters with 1000x multiplier bosses.
+            </p>
+          </div>
+          <div class="card-action">
+            <span class="action-label" data-en="Explore Arcade >" data-zh="查看街機模式 >">Explore Arcade ></span>
+            <span class="action-tag">High Multiplier</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 頁尾轉換卡片 -->
+    <div class="cta-footer-card">
+      <h2 data-en="CLAIM YOUR $70 WELCOME PACK NOW" data-zh="立即領取您的 $70 專屬迎新禮包">CLAIM YOUR $70 WELCOME PACK NOW</h2>
+      <p data-en="Deposit $20 and play with $70 instantly across all certified game providers with instant AUD settlement."
+         data-zh="首存 $20 立即送 $50，總計 $70 起步資金暢玩全館遊戲，支援澳洲銀行極速提款。">
+        Deposit $20 and play with $70 instantly across all certified game providers with instant AUD settlement.
+      </p>
+      <a class="btn-big-claim track-outbound" data-href="https://www.mate369.com/Register" data-en="CLAIM $70 & PLAY NOW >" data-zh="立即領取 $70 開局 >">CLAIM $70 & PLAY NOW ></a>
+    </div>
+  </main>
+
+  <!-- 彈窗 (Modal) -->
+  <div class="modal-overlay" id="providerModal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="modalBody"></div>
+      <a class="modal-cta-btn track-outbound" data-href="https://www.mate369.com/Register" data-en="Play This Provider Now >" data-zh="立即進入此廠商機台 >">Play This Provider Now ></a>
+    </div>
+  </div>
+
+  <script>
+    // -------------------------------------------------------------
+    // 1. 廠商 SEO 文案資料庫 (中英雙語結構化資料)
+    // -------------------------------------------------------------
+    const providerData = {
+      bng: {
+        en: {
+          title: "BNG (3 Oaks Gaming) - Official Australian Review",
+          subtitle: "Certified Hold & Win Engine | High-Volatility Jackpot Pokies",
+          content: `
+            <p><strong>3 Oaks (formerly Booongo)</strong> has cemented its reputation as one of the premier slot developers for Australian punters. The studio is best known for its patented <strong>Hold and Win</strong> bonus mechanics, delivering dynamic respin action and four-tier fixed jackpots.</p>
+            <h4>Key Features:</h4>
+            <ul>
+              <li><strong>Certified RTP:</strong> Averaging 95.8% to 96.6% audited by eCOGRA.</li>
+              <li><strong>Signature Titles:</strong> Sun of Egypt 3, Magic Apple, 15 Dragon Pearls.</li>
+              <li><strong>Grand Jackpot:</strong> Potential payouts scaling up to 5,000x the base stake.</li>
+            </ul>
+            <p>Every title is fully responsive and supports instant loading across iOS and Android browsers without standalone app requirements.</p>
+          `
+        },
+        zh: {
+          title: "BNG (3 Oaks Gaming) - 官方澳洲權威評測",
+          subtitle: "官方認證 Hold & Win 機制 | 高波動累積彩金機台",
+          content: `
+            <p><strong>3 Oaks (原 BNG)</strong> 是澳洲線上拉霸市場中最受推崇的頂級供應商之一。其最負盛名的專利 <strong>Hold and Win</strong> 機制，透過高頻率的重轉鎖定功能，提供高達四層的固定巨額彩池（Grand Jackpot）。</p>
+            <h4>核心優勢亮點：</h4>
+            <ul>
+              <li><strong>官方認證 RTP：</strong> 經國際實驗室認證，平均返還率維持在 95.8% - 96.6%。</li>
+              <li><strong>經典代表作：</strong> 埃及之日 3 (Sun of Egypt 3)、魔法蘋果 (Magic Apple)。</li>
+              <li><strong>最高爆分倍率：</strong> 獎勵關卡最高可觸發高達 5,000 倍壓注額派彩。</li>
+            </ul>
+            <p>所有機台均採用輕量化 HTML5 架構，在澳洲各大行動電信網路下皆能秒速載入。</p>
+          `
+        }
+      },
+      pp: {
+        en: {
+          title: "Pragmatic Play - World-Class Pokies & Cascading Reels",
+          subtitle: "Certified Multiplier Engine | Industry-Leading Drops & Wins",
+          content: `
+            <p><strong>Pragmatic Play</strong> remains the undisputed gold standard in iGaming. Recognized worldwide for high volatility and groundbreaking tumble mechanics, their games feature cluster payouts and multiplier bombs that can combine for life-changing hits.</p>
+            <h4>Key Features:</h4>
+            <ul>
+              <li><strong>Certified RTP:</strong> Configured at optimal 96.50% - 96.71% brackets.</li>
+              <li><strong>Signature Titles:</strong> Gates of Olympus, Sweet Bonanza, Sugar Rush 1000.</li>
+              <li><strong>Multiplier Cap:</strong> Up to 15,000x total bet potential with unlimited cascade chain reactions.</li>
+            </ul>
+          `
+        },
+        zh: {
+          title: "Pragmatic Play (PP 電子) - 全球頂級消行爆分旗艦",
+          subtitle: "全盤高倍數乘算引擎 | 業界最具代表性的掉落消除機制",
+          content: `
+            <p><strong>Pragmatic Play</strong> 堪稱全球老虎機界的天花板。其首創的無邊界消行機制搭配隨機掉落的金色乘數球，讓澳洲玩家每一次旋轉都有機會堆疊出震撼全場的數千倍乘算彩金。</p>
+            <h4>核心優勢亮點：</h4>
+            <ul>
+              <li><strong>官方認證 RTP：</strong> 全機台配置在 96.50% 至 96.71% 高回報區間。</li>
+              <li><strong>經典代表作：</strong> 奧林匹斯之門 (Gates of Olympus)、甜心蜜糖 (Sweet Bonanza)。</li>
+              <li><strong>極限爆發力：</strong> 結合免費旋轉獎勵關卡，最高倍數可達 15,000 倍以上。</li>
+            </ul>
+          `
+        }
+      },
+      pg: {
+        en: {
+          title: "PG Soft (Pocket Games Soft) - Mobile-First Engineering",
+          subtitle: "Vertical Layout Masterpieces | 3D Cinematic Storyline Pokies",
+          content: `
+            <p><strong>PG Soft</strong> revolutionized mobile casino entertainment by designing games strictly optimized for one-handed portrait gameplay. Utilizing fluid 3D graphics and complex cascading combo systems, PG Soft titles deliver an arcade-level tactile experience.</p>
+            <h4>Key Features:</h4>
+            <ul>
+              <li><strong>Certified RTP:</strong> Consistently calibrated at 96.7% - 97.4%.</li>
+              <li><strong>Signature Titles:</strong> Mahjong Ways 2, Fortune Tiger, Dragon Hatch.</li>
+              <li><strong>Seamless Mobile UX:</strong> Ultra-fast touch feedback and optimized low-bandwidth consumption.</li>
+            </ul>
+          `
+        },
+        zh: {
+          title: "PG Soft (電子) - 專為智慧手機打造的直式娛樂霸主",
+          subtitle: "單手操作最佳化 | 3D 電影級劇情連擊老虎機",
+          content: `
+            <p><strong>PG Soft</strong> 徹底顛覆了傳統拉霸機的呈現方式。全線產品皆以智慧手機垂直畫面原生開發，具備極致細膩的 3D 動畫、多層消行與階梯式乘數遞增機制，單手即可享受掌上暴擊快感。</p>
+            <h4>核心優勢亮點：</h4>
+            <ul>
+              <li><strong>官方認證 RTP：</strong> 平均高達 96.7% - 97.4%，出獎體感極為平滑。</li>
+              <li><strong>經典代表作：</strong> 麻將胡了 2 (Mahjong Ways 2)、虎虎生威 (Fortune Tiger)。</li>
+              <li><strong>行動端極致體驗：</strong> 載入速度極快，針對澳洲主流 4G/5G 訊號做過完整傳輸輕量化。</li>
+            </ul>
+          `
+        }
+      },
+      sbo: {
+        en: {
+          title: "SBOBET Sportsbook - Official Australian Betting Odds",
+          subtitle: "Global Bookmaker | High-Liquidity In-Play Betting Markets",
+          content: `
+            <p><strong>SBOBET</strong> has been an international titan in sports wagering for over two decades. Covering thousands of live events each week, SBOBET delivers competitive Asian handicap lines and deep proposition markets tailored for local Australian sporting enthusiasts.</p>
+            <h4>Key Features:</h4>
+            <ul>
+              <li><strong>Comprehensive Coverage:</strong> AFL, NRL, Cricket, English Premier League, NBA, and Horse Racing.</li>
+              <li><strong>Real-Time Settlement:</strong> Instant bet processing with sub-second in-play pricing updates.</li>
+              <li><strong>Fair Margins:</strong> Industry-low bookmaker margins ensuring superior payout odds.</li>
+            </ul>
+          `
+        },
+        zh: {
+          title: "SBOBET 體育盤口 - 享譽全球的國際體育博彩權威",
+          subtitle: "高流動性即時滾球盤 | 澳洲本土與國際賽事全面涵蓋",
+          content: `
+            <p><strong>SBOBET (利記)</strong> 擁有超過二十年的國際信譽，是亞洲與大洋洲最權威的體育平台。每週提供數千場即時賽事滾球盤口，為澳洲體育迷帶來極具競爭力的高賠率與多元玩法。</p>
+            <h4>核心優勢亮點：</h4>
+            <ul>
+              <li><strong>全方位體育涵蓋：</strong> 澳式足球 (AFL)、橄欖球 (NRL)、板球、英超、NBA 與澳洲賽馬。</li>
+              <li><strong>極速派彩結算：</strong> 支援秒級即時滾球注單確認與賽後快速自動劃帳。</li>
+              <li><strong>超低水位讓利：</strong> 國際級頂尖精算盤口，提供高於同行的真實返水回報。</li>
+            </ul>
+          `
+        }
+      },
+      mt: {
+        en: {
+          title: "MT Live Gaming - Luxury 4K Interactive Studio",
+          subtitle: "Zero-Latency Ultra HD Streams | Professional Bilingual Dealers",
+          content: `
+            <p><strong>MT Live</strong> brings the authentic ambiance of Crown Melbourne directly to your display. Engineered with proprietary optical card-recognition technology and 4K cameras, players can experience uncompromised transparency across every hand.</p>
+            <h4>Key Features:</h4>
+            <ul>
+              <li><strong>Diverse Tables:</strong> Speed Baccarat, Squeeze Baccarat, Dragon Tiger, and Lightning Roulette.</li>
+              <li><strong>Transparent Integrity:</strong> Real-time shoe tracking, instant card scans, and interactive player chat.</li>
+              <li><strong>High Table Limits:</strong> Accommodating both casual punters and VIP high rollers.</li>
+            </ul>
+          `
+        },
+        zh: {
+          title: "MT 真人視訊 - 沉浸式 4K 奢華真人娛樂大廳",
+          subtitle: "零延遲超高清串流 | 專業雙語荷官與防窺咪牌系統",
+          content: `
+            <p><strong>MT Live</strong> 將宛如墨爾本皇冠賭場的奢華氛圍完美復刻至螢幕前。採用最新光學掃描發牌設備與 4K 多角度攝影機，確保每一局撲克發放與開牌過程皆達到最高誠信標準。</p>
+            <h4>核心優勢亮點：</h4>
+            <ul>
+              <li><strong>豐富桌台陣容：</strong> 極速百家樂、自主咪牌百家樂、龍虎鬥、歐式輪盤與骰寶。</li>
+              <li><strong>極致透明公平：</strong> 具備完整大路/珠盤即時路紙走勢圖與荷官語音互動。</li>
+              <li><strong>彈性投注限額：</strong> 兼顧小額娛樂休閒玩家與 VIP 頂級尊榮高額限額。</li>
+            </ul>
+          `
+        }
+      },
+      fish: {
+        en: {
+          title: "Fish Hunter Hall - Precision Skill-Based Arcade Action",
+          subtitle: "Multiplayer Co-Op Battles | Lock-On Cannons & 1,000x Bosses",
+          content: `
+            <p>Step away from traditional reels and test your precision in the <strong>Fish Hunter Arcade Hall</strong>. Featuring shared multiplayer ocean arenas, players utilize specialized weaponry, lightning grids, and freeze bombs to take down colossal underwater beasts.</p>
+            <h4>Key Features:</h4>
+            <ul>
+              <li><strong>High-Multiplier Bosses:</strong> Golden Krakens and Dragons delivering bounties up to 1,000x.</li>
+              <li><strong>Tactical Arsenal:</strong> Upgradeable power cannons, target-lock beams, and screen-clearing nukes.</li>
+              <li><strong>Social Multiplayer:</strong> Compete or cooperate with up to four punters in the same room.</li>
+            </ul>
+          `
+        },
+        zh: {
+          title: "專屬街機捕魚大廳 - 技術型多人同屏爆金射擊",
+          subtitle: "多人即時競技海域 | 鎖定瞄準重砲與千倍深海巨獸",
+          content: `
+            <p>告別單調的單線旋轉，體驗極度刺激的<strong>街機捕魚競技場</strong>！在多人同屏共享的浩瀚海域中，玩家可自訂砲台威力，靈活運用雷射光束、冰凍鎖定及全屏核彈，精準擊落各類珍稀深海巨獸。</p>
+            <h4>核心優勢亮點：</h4>
+            <ul>
+              <li><strong>千倍神話巨獸：</strong> 黃金巨龍、遠古海怪擊殺最高直爆 1,000 倍以上金幣。</li>
+              <li><strong>豐富科技軍火庫：</strong> 支援智慧自動鎖定、電磁爆破與急速連射模式。</li>
+              <li><strong>即時同屏競技：</strong> 支援四名玩家同場博弈，技術操控與爆分爽感兼備。</li>
+            </ul>
+          `
+        }
+      }
+    };
+
+    // -------------------------------------------------------------
+    // 2. 彈窗邏輯
+    // -------------------------------------------------------------
+    let currentLang = 'en';
+
+    function openModal(providerKey) {
+      const data = providerData[providerKey];
+      if (!data) return;
+
+      const info = data[currentLang] || data.en;
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <h3 class="modal-title">${info.title}</h3>
+        <div class="modal-subtitle">${info.subtitle}</div>
+        <div class="modal-content">${info.content}</div>
+      `;
+      document.getElementById('providerModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('providerModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // 點擊遮罩空白處關閉
+    document.getElementById('providerModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // -------------------------------------------------------------
+    // 3. 雙語即時切換引擎
+    // -------------------------------------------------------------
+    const langBtn = document.getElementById('langToggle');
+    langBtn.addEventListener('click', () => {
+      currentLang = (currentLang === 'en') ? 'zh' : 'en';
+      langBtn.textContent = (currentLang === 'en') ? '中文' : 'English';
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerHTML = (currentLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 4. 動態跳轉引擎 (尊重專屬連結，廣告參數無損打包)
+    // -------------------------------------------------------------
+    function getFinalTargetUrl(customUrl) {
+      const defaultRegisterUrl = "https://www.mate369.com/Register";
+      const targetBase = (customUrl && customUrl.trim() !== "") ? customUrl.trim() : defaultRegisterUrl;
+      
+      const targetObj = new URL(targetBase, window.location.origin);
+      const currentParams = new URLSearchParams(window.location.search);
+      
+      // 只有目標連結本身沒有該參數時，才補上進站帶來的廣告參數
+      currentParams.forEach((val, key) => {
+        if (!targetObj.searchParams.has(key)) {
+          targetObj.searchParams.set(key, val);
+        }
+      });
+
+      return targetObj.toString();
+    }
+
+    // 全站外跳按鈕點擊攔截
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('.track-outbound');
+      if (target) {
+        e.preventDefault();
+        const customUrl = target.getAttribute('data-href');
+        const finalUrl = getFinalTargetUrl(customUrl);
+        window.open(finalUrl, '_blank');
+      }
+    });
+  </script>
+</body>
+</html>
