@@ -1056,6 +1056,8 @@
         }
       });
 
+      return targetObj.toString();
+      }
     // 全站點擊攔截 (只攔截帶有 .track-outbound 的指定按鈕)
     document.addEventListener('click', function(e) {
       const target = e.target.closest('.track-outbound');
