@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+  <!-- 
+  ================================================================================
+  🛡️ 【分頁專用】關於品牌、牌照審計與理性博弈・合規認證頁 (CHEAT SHEET 小抄)
+  ================================================================================
+  📌 日常換皮 3 分鐘速查指南：
+     Step 1. 【區塊 1】ACTIVE_PIXEL_ID  : 換成對應的 Meta 像素 ID
+     Step 2. 【區塊 2】SEO 標題與品牌詞  : 全域搜尋「MATE369」替換成新品牌名
+     Step 3. 【區塊 4】CSS 品牌主色調    : 保持與主頁一致，若需變色改 :root 即可
+     Step 4. 【區塊 16】defaultRegisterUrl: 換成包網註冊直出線
+     Step 5. 素材清單 (直接放於根目錄，本分頁自動透過 ../ 讀取)：
+             - logo.webp / logo.ico
+             - view.webp (龐克城市背景圖)
+  ================================================================================
+  -->
+
+  <!-- 【區塊 1】META 像素追蹤 -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    const ACTIVE_PIXEL_ID = "000000000000000"; 
+    if (ACTIVE_PIXEL_ID && ACTIVE_PIXEL_ID !== "000000000000000") {
+      fbq('init', ACTIVE_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
+
+  <!-- 【區塊 2】SEO 結構與分頁標題 -->
+  <title>MATE369 | About Us, Certified Fairness &amp; Corporate Standards</title>
+  <meta name="description" content="Learn about MATE369: Australia's premier certified online casino and pokie platform. Audited RNG fairness, PayID banking protocols, and responsible gaming commitments.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  
+  <meta name="geo.region" content="AU">
+  <meta name="geo.placename" content="Australia">
+  <meta name="geo.position" content="-25.2744;133.7751">
+  <meta name="ICBM" content="-25.2744,133.7751">
+
+  <link rel="icon" href="../logo.ico" type="image/x-icon">
+
+  <!-- 【區塊 3】Google 科技電競字體引入 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;1,700;1,900&family=Noto+Sans+SC:wght@400;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- 【區塊 4】CSS 視覺體系 (100% 繼承母版) -->
+  <style>
+    :root {
+      --bg: #031c10;
+      --panel: rgba(4, 40, 24, 0.85);
+      --panel-solid: #052d1a;
+      --pink: #106539;
+      --magenta: #00ff88;
+      --violet: #56FF4D;
+      --purple: #2FFF6D;
+      --gold: #ffc700;
+      --text: #FFFFFF;
+      --muted: #BFFFD7;
+      --line: rgba(0, 255, 136, 0.22);
+      
+      --nav-height: 64px;
+      --logo-height-pc: 42px;
+      --logo-height-mobile: 32px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Rajdhani", "Noto Sans SC", sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: var(--nav-height);
+    }
+
+    /* 🏙️ 主頁背景視覺 */
+    .bg-city {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: url('../view.webp') center top / cover no-repeat fixed;
+      background-color: var(--bg);
+      opacity: 0.85;
+    }
+    .bg-overlay {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(3,28,16,0.2) 0%, rgba(3,28,16,0.55) 60%, rgba(3,28,16,0.85) 100%);
+    }
+    .grid-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .scan {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.25;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 1px, transparent 1px 3px);
+    }
+
+    #cursor-glow {
+      position: fixed; width: 450px; height: 450px; border-radius: 50%;
+      pointer-events: none; z-index: 1;
+      background: radial-gradient(circle, rgba(0,255,136,0.15), rgba(255,27,141,0.08), transparent 65%);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+    }
+
+    .wrap { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+    /* 📌 導航欄 */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
+      z-index: 999; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: rgba(3, 28, 16, 0.90); border-bottom: 1px solid var(--line);
+    }
+    .nav-in {
+      max-width: 1180px; height: 100%; margin: 0 auto; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-box { display: flex; align-items: center; text-decoration: none; cursor: pointer; }
+    .logo-img { height: var(--logo-height-pc); width: auto; max-width: 220px; object-fit: contain; display: block; }
+    .logo-fallback { display: none; align-items: center; gap: 8px; font-family: "Chakra Petch"; font-weight: 700; font-style: italic; font-size: 1.25rem; color: #fff; }
+    .logo-fallback .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--magenta); box-shadow: 0 0 12px var(--magenta); }
+
+    .nav-links { display: flex; align-items: center; gap: 18px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--magenta); }
+    .lang {
+      cursor: pointer; border: 1px solid var(--line); padding: 5px 12px;
+      color: var(--muted); font-family: "Chakra Petch"; font-weight: 700; font-size: 0.8rem;
+      background: transparent; clip-path: polygon(0 0,100% 0,100% 70%,calc(100% - 8px) 100%,0 100%);
+      transition: 0.2s;
+    }
+    .lang:hover { color: #fff; border-color: var(--magenta); }
+
+    /* 📱 手機功能群組 (電腦版直接隱藏) */
+    .mobile-actions { display: none !important; }
+    .menu-toggle {
+      background: none; border: 1px solid var(--line);
+      color: var(--magenta); font-size: 1.4rem; padding: 4px 10px;
+      cursor: pointer; border-radius: 4px; line-height: 1;
+    }
+
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
+      background: rgba(3, 28, 16, 0.98); border-bottom: 1px solid var(--line);
+      padding: 20px; z-index: 998; backdrop-filter: blur(20px);
+      flex-direction: column; gap: 16px;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: var(--text); text-decoration: none; font-size: 1.1rem;
+      font-weight: 700; font-family: "Chakra Petch"; padding: 8px 0;
+      border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    .mobile-menu a.active { color: var(--magenta); }
+
+    /* 科技切角按鈕體系 */
+    .btn {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      font-family: "Chakra Petch"; font-weight: 700; font-style: italic; letter-spacing: 0.5px;
+      text-transform: uppercase; text-decoration: none; cursor: pointer; border: none;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+      transition: 0.22s;
+    }
+    .btn-nav-reg {
+      background: linear-gradient(120deg, var(--pink), var(--purple)) !important;
+      color: #ffffff !important; padding: 9px 20px !important; font-size: 0.85rem !important;
+      box-shadow: 0 0 14px rgba(0, 255, 136, 0.4) !important;
+    }
+    .btn-primary {
+      background: linear-gradient(120deg, var(--pink), var(--purple));
+      color: #ffffff !important; font-weight: 900;
+      box-shadow: 0 0 22px rgba(0, 255, 136, 0.45);
+      padding: 12px 24px; font-size: 0.95rem;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(0, 255, 136, 0.85); }
+    .btn-large {
+      width: 100%; max-width: 440px; padding: 16px 32px; font-size: 1.15rem; margin: 0 auto;
+      animation: btnPulse 2s ease-in-out infinite;
+    }
+    @keyframes btnPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 16px rgba(0, 255, 136, 0.35); }
+      50% { transform: scale(1.03); box-shadow: 0 0 32px rgba(0, 255, 136, 0.8); }
+    }
+
+    /* 頁面通用排版 */
+    header { padding: 32px 0 24px; text-align: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; font-family: "Chakra Petch";
+      font-size: 0.76rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--magenta);
+      border: 1px solid var(--line); padding: 5px 14px; border-radius: 40px;
+      background: rgba(0,255,136,0.06); margin-bottom: 8px;
+    }
+    .badge .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--magenta); box-shadow: 0 0 8px var(--magenta); animation: pulse 1.6s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-family: "Chakra Petch", "Noto Sans SC"; font-weight: 900; font-style: italic;
+      line-height: 1.1; font-size: clamp(2.2rem, 5.5vw, 3.6rem); margin: 6px 0;
+    }
+    h1 .l1 { display: block; color: #fff; }
+    h1 .l2 {
+      display: block;
+      background: linear-gradient(90deg, #00ff88, #25d366, #ffc700);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .sub { max-width: 720px; margin: 10px auto 0; color: var(--text); font-size: 0.98rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+
+    /* 🏛️ 4 大官方資安牌照徽章列 */
+    .trust-badges {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      max-width: 980px; margin: 26px auto 40px;
+    }
+    .trust-card {
+      background: var(--panel); border: 1px solid var(--line); padding: 18px 14px; text-align: center;
+      clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+      transition: 0.2s;
+    }
+    .trust-card:hover { border-color: var(--magenta); }
+    .trust-val { font-family: "Chakra Petch"; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+    .trust-lbl { font-size: 0.76rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; font-weight: 600; }
+
+    /* 📝 SEO 深度長文專區 (自帶雙層立體陰影) */
+    .about-prose { max-width: 960px; margin: 0 auto 50px; }
+    .about-block {
+      background: var(--panel); border: 1px solid var(--line); padding: 28px 24px; margin-bottom: 20px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+    }
+    .about-block h3 {
+      font-family: "Chakra Petch", "Noto Sans SC"; font-weight: 700; font-size: 1.3rem;
+      color: var(--gold); margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.8);
+    }
+    .about-block p {
+      color: #DBFFEC; line-height: 1.8; font-size: 0.96rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9); margin-bottom: 10px;
+    }
+    .about-block p:last-child { margin-bottom: 0; }
+
+    /* 頁尾轉換大卡片 */
+    .final-cta {
+      background: linear-gradient(150deg, var(--panel-solid), rgba(0,255,136,0.1));
+      border: 1px solid var(--line); padding: 48px 24px; text-align: center; margin-bottom: 60px;
+      clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    }
+    .final-cta h2 { font-family: "Chakra Petch", "Noto Sans SC"; font-size: clamp(1.5rem, 5.5vw, 2.3rem); line-height: 1.25; margin-bottom: 12px; font-weight: 700; font-style: italic; }
+    .final-cta h2 em { font-style: italic; color: var(--magenta); }
+    .final-cta p { color: var(--muted); font-size: 1rem; max-width: 600px; margin: 0 auto 24px; }
+
+    footer { border-top: 1px solid var(--line); padding: 36px 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    .f-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+    .f-links a { color: var(--muted); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; transition: 0.2s; }
+    .f-links a:hover { color: var(--magenta); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* 📱 手機端極致優化 (< 768px) */
+    @media (max-width: 768px) {
+      .nav-links { display: none !important; }
+      .mobile-actions { display: flex !important; }
+      .menu-toggle { display: block !important; }
+      .logo-img { height: var(--logo-height-mobile); }
+      #cursor-glow { display: none; }
+      header { padding: 20px 0 14px; }
+      h1 { font-size: 2.1rem; }
+      .sub { font-size: 0.92rem; }
+      .trust-badges { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .about-block { padding: 18px 16px; }
+      .about-block h3 { font-size: 1.15rem; }
+      .about-block p { font-size: 0.9rem; line-height: 1.65; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 背景視覺組件 -->
+  <div class="bg-city"></div>
+  <div class="bg-overlay"></div>
+  <div class="grid-bg"></div>
+  <div class="scan"></div>
+  <div id="cursor-glow"></div>
+
+  <!-- 【區塊 6】頂部導航欄 (具備已調試好的手機專屬動作群) -->
+  <nav>
+    <div class="nav-in">
+      <a class="logo-box" href="../">
+        <img src="../logo.webp" alt="MATE369 Logo" class="logo-img" onerror="this.src='../logo.ico'">
+        <span class="logo-fallback"><span class="dot"></span><span>MATE369</span></span>
+      </a>
+
+      <!-- 電腦版選單 (此處 About 為 active 高亮) -->
+      <div class="nav-links">
+        <a data-en="Home" data-zh="首頁" href="../">Home</a>
+        <a data-en="Games" data-zh="精選遊戲" href="../games/">Games</a>
+        <a data-en="Features" data-zh="特色優勢" href="../features/">Features</a>
+        <a data-en="FAQ" data-zh="常見問題" href="../faq/">FAQ</a>
+        <a data-en="About" data-zh="關於我們" class="active" href="./">About</a>
+        <button class="lang" id="langBtn">EN</button>
+        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
+      </div>
+
+      <!-- 手機端功能按鈕群 (語言 + 立即註冊 + 漢堡) -->
+      <div class="mobile-actions" style="display:flex; align-items:center; gap:8px;">
+        <button class="lang" id="langBtnTop" style="padding:4px 8px; font-size:0.75rem;">EN</button>
+        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);" style="padding:6px 12px !important; font-size:0.78rem !important;">Register</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 📱 手機抽屜展開選單 -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a data-en="Home" data-zh="首頁" href="../">Home</a>
+    <a data-en="Games" data-zh="精選遊戲" href="../games/">Games</a>
+    <a data-en="Features" data-zh="特色優勢" href="../features/">Features</a>
+    <a data-en="FAQ" data-zh="常見問題" href="../faq/">FAQ</a>
+    <a data-en="About" data-zh="關於我們" class="active" href="./">About</a>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
+      <span style="font-family:'Chakra Petch'; font-size:0.9rem; color:var(--muted);">Language:</span>
+      <button class="lang" id="langBtnDrawer">EN</button>
+    </div>
+    <a class="btn btn-primary track-outbound" style="width:100%; margin-top:8px;" data-en="REGISTER NOW ›" data-zh="立即註冊領彩金 ›" href="javascript:void(0);">REGISTER NOW ›</a>
+  </div>
+
+  <main class="wrap">
+    <!-- 標題區 -->
+    <header class="reveal">
+      <div class="badge">
+        <span class="pulse"></span>
+        <span data-en="CORPORATE IDENTITY &amp; AUDIT CREDENTIALS" data-zh="品牌資質與官方合規審計標準">CORPORATE IDENTITY &amp; AUDIT CREDENTIALS</span>
+      </div>
+
+      <h1>
+        <span class="l1" data-en="ABOUT OUR MISSION" data-zh="關於平台願景">ABOUT OUR MISSION</span>
+        <span class="l2" data-en="INTEGRITY, RNG &amp; COMPLIANCE" data-zh="堅持誠信公平與卓越體驗">INTEGRITY, RNG &amp; COMPLIANCE</span>
+      </h1>
+
+      <p class="sub" data-en="Established to deliver Australia's most secure and transparent online casino experience. Operating under stringent international licensing with certified random mathematics."
+                     data-zh="專為澳洲玩家打造最安全、公正且高效的頂級線上娛樂入口。在國際權威牌照監管下運作，提供真實透明的演算法與極速出金體驗。">
+        Established to deliver Australia's most secure and transparent online casino experience. Operating under stringent international licensing with certified random mathematics.
+      </p>
+    </header>
+
+    <!-- 🏛️ 4 大官方資安牌照徽章列 -->
+    <div class="trust-badges reveal">
+      <div class="trust-card">
+        <div class="trust-val">eCOGRA</div>
+        <div class="trust-lbl" data-en="RNG AUDITED" data-zh="公平隨機審計">RNG AUDITED</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-val">TLS 1.3</div>
+        <div class="trust-lbl" data-en="FINANCIAL CIPHER" data-zh="金融傳輸防護">FINANCIAL CIPHER</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-val">PAYID AUD</div>
+        <div class="trust-lbl" data-en="DIRECT SETTLEMENT" data-zh="原生澳幣結算">DIRECT SETTLEMENT</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-val">18+ RESTRICTED</div>
+        <div class="trust-lbl" data-en="RESPONSIBLE PLAY" data-zh="理性博弈指引">RESPONSIBLE PLAY</div>
+      </div>
+    </div>
+
+    <!-- 📝 SEO 深度長文專區 (品牌四大基石) -->
+    <div class="about-prose reveal">
+      
+      <!-- 模組 1 -->
+      <div class="about-block">
+        <h3 data-en="The Ultimate Destination for Real Money Online Pokies in Australia" data-zh="全澳真錢線上老虎機（Pokies）極致首選入口">The Ultimate Destination for Real Money Online Pokies in Australia</h3>
+        <p data-en="Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots."
+           data-zh="專為眼光獨到的澳洲玩家（Punters）量身打造，本平台已成為全澳最可靠、最全面的真錢線上娛樂城。我們擁有龐大的認證遊戲庫，滿足各類玩家的喜好——從經典的三軸水果機台，到最頂尖的現代視訊老虎機。">
+          Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino.
+        </p>
+        <p data-en="Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin."
+           data-zh="在這裡，您可以探索全澳最受歡迎的 Hold and Win 機台、提供超過 117,649 種獲勝方式的高波動度 Megaways 玩法，以及具備改變命運彩金的累積彩池大獎（Progressive Jackpots）。每款遊戲皆具備經第三方驗證的真實返還率（RTP），確保每次旋轉都擁有透明的數學模型與真實的爆獎潛力。">
+          Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots.
+        </p>
+      </div>
+
+      <!-- 模組 2 -->
+      <div class="about-block">
+        <h3 data-en="Immersive Live Dealer Tables: Blackjack, Roulette &amp; Baccarat" data-zh="身臨其境的真人視訊牌桌：二十一點、輪盤與百家樂">Immersive Live Dealer Tables: Blackjack, Roulette &amp; Baccarat</h3>
+        <p data-en="For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap. Broadcast directly in crystal-clear HD with professional live dealers, you can take your virtual seat at live Blackjack tables, experience European and American Roulette, or dive into rapid-fire Baccarat action."
+           data-zh="針對渴望體驗墨爾本皇冠（Crown Melbourne）或雪梨星億（The Star Sydney）等傳統實體賭場氛圍的玩家，我們的高畫質真人娛樂城完美消除了線上與線下的界線。所有牌桌均以頂級高畫質清晰實況轉播，並由專業荷官即時發牌。您可以隨時在真人二十一點入座、體驗歐式與美式輪盤的轉動心跳，或沉浸在緊湊明快的百家樂對局中。">
+          For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap.
+        </p>
+        <p data-en="Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers, we deliver the authentic casino floor atmosphere directly to your desktop and mobile devices."
+           data-zh="透過即時路單數據、直覺的操作介面，以及兼顧休閒賭客與高額投注者（High Rollers）的彈性限額，將最純正的賭場氛圍無縫呈現在您的電腦與行動裝置上。">
+          Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers.
+        </p>
+      </div>
+
+      <!-- 模組 3 -->
+      <div class="about-block">
+        <h3 data-en="Fast Payouts, Native AUD Banking &amp; Seamless PayID Integration" data-zh="極速出金、原生澳幣（AUD）結算與 PayID 即時存取">Fast Payouts, Native AUD Banking &amp; Seamless PayID Integration</h3>
+        <p data-en="We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market, allowing you to deposit and withdraw in native Australian Dollars (AUD) with zero hidden conversion fees."
+           data-zh="我們深知快速、順暢的提款體驗是衡量一家值得信賴娛樂城的核心標準。我們的金流架構專為澳洲市場深度客製，支援原生澳幣（AUD）進行存提款，完全無任何隱藏匯率折損。">
+          We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market.
+        </p>
+        <p data-en="Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum. Protected by enterprise-tier 256-bit SSL encryption protocols, your financial transactions and sensitive account details are safeguarded round the clock."
+           data-zh="玩家可透過全澳最普及的 PayID 與本地銀行轉帳享受即時到帳與極速出金，亦可選擇 USDT、比特幣（BTC）及以太坊（ETH）等主流加密貨幣快速結算。所有金融交易均受企業級 256 位元 SSL 高強度加密協議保護，全天候守護您的資金安全與個人隱私。">
+          Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum.
+        </p>
+      </div>
+
+      <!-- 模組 4 -->
+      <div class="about-block">
+        <h3 data-en="Certified Fairness, Independent Audits &amp; Responsible Play Commitment" data-zh="認證公平性、獨立第三方審計與理性博弈承諾">Certified Fairness, Independent Audits &amp; Responsible Play Commitment</h3>
+        <p data-en="Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) governing our pokie machines and virtual table games undergo rigorous auditing by independent testing laboratories, including eCOGRA and iTech Labs."
+           data-zh="公平性是我們絕不妥協的底線。本平台在國際牌照架構下嚴格營運，所有驅動老虎機與虛擬桌遊的隨機亂數產生器（RNG），皆經由 eCOGRA 和 iTech Labs 等權威獨立檢驗機構的嚴格審計認證。">
+          Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) undergo rigorous auditing.
+        </p>
+        <p data-en="Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools, including customizable deposit caps, cooling-off breaks, and self-exclusion mechanisms, ensuring your gaming remains safe, sustainable, and purely entertaining."
+           data-zh="在提供公正透明對局的同時，我們於各項營運環節堅定推廣理性博弈。我們為澳洲玩家提供全方位的保護工具，包含自訂存款上限、冷靜期設定與自我限制機制，確保每位玩家的娛樂體驗始終保持在健康、安全且自律的軌道上。">
+          Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 頁尾轉換大卡片 -->
+    <div class="final-cta reveal">
+      <h2 data-en="JOIN AUSTRALIA'S MOST<br><em>TRUSTED GAMING FAMILY</em>" data-zh="加入全澳最值得信賴的<br><em>頂級娛樂大家庭</em>">
+        JOIN AUSTRALIA'S MOST<br><em>TRUSTED GAMING FAMILY</em>
+      </h2>
+      <p data-en="Experience true fairness, transparent RNG odds, and unmatched local AUD payouts. Register in seconds and claim your $70 starter package."
+         data-zh="親身體驗最真實的國際認證機率、透明出款與專屬客服。30 秒快速註冊，立即領取 $70 專屬啟動彩金。">
+        Experience true fairness, transparent RNG odds, and unmatched local AUD payouts. Register in seconds and claim your $70 starter package.
+      </p>
+      <a class="btn btn-primary btn-large track-outbound" data-href="" data-en="CLAIM $70 &amp; GET STARTED ›" data-zh="立即領取 $70 開始體驗 ›" href="javascript:void(0);">
+        CLAIM $70 &amp; GET STARTED ›
+      </a>
+    </div>
+  </main>
+
+  <!-- 官方正式頁尾 -->
+  <footer>
+    <div class="wrap">
+      <div class="f-links">
+        <a href="../" data-en="Home" data-zh="首頁">Home</a>
+        <a href="../games/" data-en="Games" data-zh="精選遊戲">Games</a>
+        <a href="../features/" data-en="Features" data-zh="特色優勢">Features</a>
+        <a href="../faq/" data-en="FAQ" data-zh="常見問答">FAQ</a>
+        <a href="./" data-en="About" data-zh="關於我們">About</a>
+      </div>
+      <div style="max-width: 820px; margin: 18px auto; line-height: 1.6; font-size: 0.85rem; color: var(--muted);"
+           data-en="Our platform operates with certified online pokies, casino entertainment, and verified payment gateways. We strictly enforce responsible gambling policies for Australian participants."
+           data-zh="本平台提供經國際認證之線上老虎機、娛樂城遊戲與安全支付通道。我們嚴格落實澳洲在地理性博弈相關指引。">
+        Our platform operates with certified online pokies, casino entertainment, and verified payment gateways.
+      </div>
+      <div style="font-size: 0.8rem; color: rgba(255,255,255,0.4);"
+           data-en="© 2026 MATE369 · Australia Online Casino Platform · Play Responsibly · 18+ Only"
+           data-zh="© 2026 MATE369 · 澳洲線上娛樂平台 · 請理性娛樂 · 僅限 18 歲以上成年人參與">
+        © 2026 MATE369 · Australia Online Casino Platform · Play Responsibly · 18+ Only
+      </div>
+    </div>
+  </footer>
+
+  <!-- 【區塊 16】核心動態引擎 -->
+  <script>
+    // 1. 手機版抽屜選單控制
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.toggle('active');
+      if (menuToggle) {
+        menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+      }
+    }
+    if (menuToggle) {
+      menuToggle.addEventListener('click', toggleMenu);
+    }
+
+    // 2. ✨ 雙語即時切換引擎
+    function switchLanguage() {
+      let currentLang = (document.documentElement.lang === 'zh') ? 'en' : 'zh';
+      const label = (currentLang === 'en') ? '中文' : 'EN';
+      
+      const pcBtn = document.getElementById('langBtn');
+      const drawerBtn = document.getElementById('langBtnDrawer');
+      const topBtn = document.getElementById('langBtnTop');
+      if (pcBtn) pcBtn.textContent = label;
+      if (drawerBtn) drawerBtn.textContent = label;
+      if (topBtn) topBtn.textContent = label;
+
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        const text = (currentLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+        if (text !== null) el.innerHTML = text;
+      });
+      document.documentElement.lang = (currentLang === 'en') ? 'en-AU' : 'zh';
+    }
+
+    const pcLangBtn = document.getElementById('langBtn');
+    const drawerLangBtn = document.getElementById('langBtnDrawer');
+    const topLangBtn = document.getElementById('langBtnTop');
+    if (pcLangBtn) pcLangBtn.addEventListener('click', switchLanguage);
+    if (drawerLangBtn) drawerLangBtn.addEventListener('click', switchLanguage);
+    if (topLangBtn) topLangBtn.addEventListener('click', switchLanguage);
+
+    // 3. 🎯 動態跳轉引擎 (廣告參數無損繼承)
+    function getFinalTargetUrl(customUrl) {
+      const defaultRegisterUrl = "https://www.mate369.com/Register?p=JC";
+      const targetBase = (customUrl && customUrl.trim() !== "") ? customUrl.trim() : defaultRegisterUrl;
+      
+      const targetObj = new URL(targetBase, window.location.origin);
+      const currentParams = new URLSearchParams(window.location.search);
+  
+      currentParams.forEach((val, key) => {
+        if (!targetObj.searchParams.has(key)) {
+          targetObj.searchParams.set(key, val);
+        }
+      });
+
+      return targetObj.toString();
+    }
+
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('.track-outbound');
+      if (!target) return;
+      e.preventDefault();
+
+      if (window.fbq) {
+        try { fbq('track', 'ViewContent', { content_name: 'About_Page_Outbound_Click' }); } catch (err) {}
+      }
+
+      const customHref = target.getAttribute('data-href') || "";
+      const destination = getFinalTargetUrl(customHref);
+
+      setTimeout(function() { window.location.href = destination; }, 150);
+    });
+
+    // 4. ✨ 滑鼠跟隨光斑
+    (function() {
+      const glow = document.getElementById('cursor-glow');
+      if (window.matchMedia('(hover: none)').matches || !glow) return;
+      document.addEventListener('mousemove', function(e) {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top  = e.clientY + 'px';
+      });
+    })();
+
+    // 5. 滾動淡入
+    (function() {
+      if (!('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        io.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
