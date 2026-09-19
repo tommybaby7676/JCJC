@@ -162,6 +162,14 @@
       cursor: pointer; border-radius: 4px; line-height: 1;
     }
 
+    /* 電腦版：直接隱藏手機功能群 */
+    .mobile-actions { display: none !important; }
+    /* 手機版 (< 768px)：隱藏電腦版導航，顯現手機功能群 */
+    @media (max-width: 768px) {
+      .nav-links { display: none !important;  }
+      .mobile-actions {  display: flex !important;  }
+      .menu-toggle {  display: block !important;  }
+    }
     /* 📱 手機抽屜菜單樣式 */
     .mobile-menu {
       display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
@@ -411,7 +419,7 @@
       </div>
 
       <!-- 手機端功能按鈕群 (語言 + 立即註冊 + 漢堡) -->
-      <div style="display:flex; align-items:center; gap:8px;">
+      <div class="mobile-actions" style="display:flex; align-items:center; gap:8px;">
         <button class="lang" id="langBtnTop" style="padding:4px 8px; font-size:0.75rem;">EN</button>
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="註冊" href="javascript:void(0);" style="padding:6px 12px !important; font-size:0.78rem !important;">Register</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
