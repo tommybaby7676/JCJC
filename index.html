@@ -179,6 +179,30 @@
       font-size: 0.85rem !important;
       box-shadow: 0 0 14px rgba(255,27,141,0.4) !important;
     }
+    /* 漢堡按鈕樣式 */
+    .menu-toggle {
+      display: none; background: none; border: 1px solid var(--line);
+      color: var(--magenta); font-size: 1.4rem; padding: 4px 10px;
+      cursor: pointer; border-radius: 4px; line-height: 1;
+    }
+
+    /* 手機抽屜菜單樣式 */
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
+      background: rgba(3, 28, 16, 0.98); border-bottom: 1px solid var(--line);
+      padding: 20px; z-index: 998; backdrop-filter: blur(20px);
+      flex-direction: column; gap: 16px;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: var(--text); text-decoration: none; font-size: 1.1rem;
+      font-weight: 700; font-family: "Chakra Petch"; padding: 8px 0;
+      border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+    }
 
     /* 科技切角按鈕體系 (還原經典粉紫電競高質感) */
     .btn {
@@ -339,7 +363,7 @@
     .toc-grid a:hover { border-color: var(--magenta); color: var(--magenta); background: rgba(0,255,136,0.18); transform: translateY(-2px); }
 
     /* 通用章節設定 */
-     section { padding: 24px 0; position: relative; scroll-margin-top: calc(var(--nav-height) + 8px); }
+    section { padding: 24px 0; position: relative; scroll-margin-top: calc(var(--nav-height) + 8px); }
     .eyebrow { font-family: "Chakra Petch"; font-weight: 600; font-size: 0.8rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--magenta); margin-bottom: 8px; }
     h2 { font-family: "Chakra Petch", "Noto Sans SC"; font-weight: 700; font-style: italic; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.08; }
     h2 em { font-style: italic; color: var(--magenta); }
@@ -347,8 +371,8 @@
     #about .sec-head { max-width: 960px; }
     .pc-br { display: inline; }
     @media (max-width: 768px) {
-    section { padding: 18px 0; }
-    .pc-br { display: none; }
+      section { padding: 18px 0; }
+      .pc-br { display: none; }
     }
 
     /* 遊戲網格 */
@@ -526,12 +550,12 @@
        ============================================================================ -->
   <nav>
     <div class="nav-in">
-      <!-- 💡 Logo 移除跳轉註冊，改為點擊平滑回頂部 -->
       <a class="logo-box" href="javascript:void(0);" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
         <img src="logo.webp" alt="Brand Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <span class="logo-fallback"><span class="dot"></span><span>MATE369</span></span>
       </a>
 
+      <!-- 電腦版導航 (精選遊戲連往分頁) -->
       <div class="nav-links">
         <a data-en="Games" data-zh="精選遊戲" href="./games/">Games</a>
         <a data-en="Features" data-zh="特色優勢" href="#features">Features</a>
@@ -540,15 +564,27 @@
         <button class="lang" id="langBtn">EN</button>
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
       </div>
+
+      <!-- 手機端漢堡圖示 -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
     </div>
   </nav>
 
+  <!-- 📱 手機抽屜展開選單 (已移除多餘的結尾標籤) -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a data-en="Games" data-zh="精選遊戲" href="./games/">Games</a>
+    <a data-en="Features" data-zh="特色優勢" href="#features" onclick="toggleMenu()">Features</a>
+    <a data-en="Platforms" data-zh="支援平台" href="#platforms" onclick="toggleMenu()">Platforms</a>
+    <a data-en="FAQ" data-zh="常見問題" href="#faq" onclick="toggleMenu()">FAQ</a>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
+      <span style="font-family:'Chakra Petch'; font-size:0.9rem; color:var(--muted);">Language:</span>
+      <button class="lang" id="langBtnDrawer">EN</button>
+    </div>
+    <a class="btn btn-primary track-outbound" style="width:100%; margin-top:8px;" data-en="REGISTER NOW ›" data-zh="立即註冊領彩金 ›" href="javascript:void(0);">REGISTER NOW ›</a>
+  </div>
+
   <!-- ============================================================================
        【區塊 7】首頁主視覺區 (輪播 BANNER + 標題 + 雙 CTA + 跑馬燈 + 數據)
-       ============================================================================
-       💡【如何新增 / 刪減 Banner？】
-       - 複製一行 `<div class="carousel-slide">...</div>` 即可新增，圖片任意長寬皆自適應置中不切邊！
-       - 如想點擊某張 Banner 跳轉到「特惠頁面」，只要加上 `class="carousel-slide track-outbound" data-href="你的網址"`。
        ============================================================================ -->
   <header>
     <div class="wrap">
@@ -565,7 +601,7 @@
           </div>
           <!-- Banner 3 -->
           <div class="carousel-slide">
-            <img src="b3.webp" alt="Promotion 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'1600\' height=\'700\' style=\'background:%2302120a\'><text x=\'50%\' y=\'50%\' fill=\'%2300ff88\' font-size=\'40\' font-family=\'sans-serif\' text-anchor=\'middle\'>BANNER 3 (任意尺寸直上不切邊)</text></svg>'">
+            <img src="b3.webp" alt="Promotion 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'1600\' height=\'700\' style=\'background:%2302120a\'><text x=\'50%\' fill=\'%2300ff88\' font-size=\'40\' font-family=\'sans-serif\' text-anchor=\'middle\'>BANNER 3 (任意尺寸直上不切邊)</text></svg>'">
           </div>
         </div>
         <div class="carousel-dots" id="carouselDots"></div>
@@ -586,10 +622,9 @@
         Join thousands of Australian punters enjoying certified high-RTP slots, live table action, and instant rebates.
       </p>
 
-      <!-- 首屏 CTA 雙按鈕 (支援個別設定跳轉網址：加上 data-href="網址" 即可) -->
+      <!-- 首屏 CTA 雙按鈕 -->
       <div class="cta-row">
         <a class="btn btn-primary track-outbound" data-en="CLAIM $70 BONUS ›" data-zh="領取 $70 彩金 ›" href="javascript:void(0);">CLAIM $70 BONUS ›</a>
-        <!-- 💡 示範：若點擊「查看專屬優惠」想導向特定優惠線，可直接填入 data-href="網址"；沒寫則走預設大廳 -->
         <a class="btn btn-ghost track-outbound" data-href="https://m.mate369.com/#/Promotion" data-en="VIEW PROMOTIONS" data-zh="查看專屬優惠" href="javascript:void(0);">VIEW PROMOTIONS</a>
       </div>
 
@@ -645,11 +680,7 @@
   </header>
 
   <!-- ============================================================================
-       【區塊 8】熱門遊戲庫 (GAMES - 支援獨立外鏈與卡片增減)
-       ============================================================================
-       💡【如何新增機台或指定進入特定遊戲？】
-       - 複製一整塊 `<a class="game track-outbound">...</a>`。
-       - 若某遊戲有專屬啟動線，直接加上 `data-href="https://該遊戲直出線"` 即可！
+       【區塊 8】熱門遊戲庫 (GAMES)
        ============================================================================ -->
   <section id="games">
     <div class="wrap">
@@ -723,7 +754,7 @@
           </div>
         </a>
 
-        <!-- 機台卡 5 -->
+        <!-- 機台卡 6 -->
         <a class="game track-outbound" data-href="" href="javascript:void(0);">
           <div class="cover">
             <img src="FS.webp" alt="FISHING" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -739,7 +770,7 @@
   </section>
 
   <!-- ============================================================================
-       【區塊 9】特色亮點 (FEATURES - 改為純資訊展示，不誤跳)
+       【區塊 9】特色亮點 (FEATURES)
        ============================================================================ -->
   <section id="features">
     <div class="wrap">
@@ -777,7 +808,7 @@
   </section>
 
   <!-- ============================================================================
-       【區塊 10】全端支援 (PLATFORMS - 純展示圖標與卡片，不誤跳)
+       【區塊 10】全端支援 (PLATFORMS)
        ============================================================================ -->
   <section id="platforms">
     <div class="wrap" style="text-align:center;">
@@ -827,7 +858,7 @@
   </section>
 
   <!-- ============================================================================
-       【區塊 11】四步驟上手教學 + 獨立引導 CTA (STEPS)
+       【區塊 11】四步驟上手教學 (STEPS)
        ============================================================================ -->
   <section id="start">
     <div class="wrap">
@@ -836,7 +867,6 @@
         <h2 data-en="START IN <em>FOUR SIMPLE STEPS</em>" data-zh="簡單 <em>四步驟</em> 立即開啟">START IN <em>FOUR SIMPLE STEPS</em></h2>
       </div>
 
-      <!-- 純展示卡片，不誤跳 -->
       <div class="steps reveal">
         <div class="step">
           <div class="num">01</div>
@@ -860,7 +890,6 @@
         </div>
       </div>
 
-      <!-- 💡 步驟 4 結尾的唯一引導按鈕 (保留跳轉) -->
       <div class="step-cta-box reveal">
         <a class="btn btn-primary btn-large track-outbound" data-href="" data-en="JOIN MATE369 NOW ›" data-zh="立即加入 MATE369 ›" href="javascript:void(0);">JOIN MATE369 NOW ›</a>
       </div>
@@ -902,46 +931,42 @@
        【區塊 13】SEO 品牌長文專區 (ABOUT BRAND)
        ============================================================================ -->
   <section id="about">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow" data-en="ABOUT OUR PLATFORM" data-zh="關於平台">ABOUT OUR PLATFORM</div>
-      <h2 data-en="AUSTRALIA'S PREMIER ONLINE POKIES<br class='pc-br'> & REAL MONEY CASINO DESTINATION" data-zh="值得信賴的澳洲線上娛樂城<br class='pc-br'> <em>與真錢老虎機旗艦</em>">AUSTRALIA'S PREMIER ONLINE POKIES<br class="pc-br"> <em>& REAL MONEY CASINO DESTINATION</em></h2>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow" data-en="ABOUT OUR PLATFORM" data-zh="關於平台">ABOUT OUR PLATFORM</div>
+        <h2 data-en="AUSTRALIA'S PREMIER ONLINE POKIES<br class='pc-br'> & REAL MONEY CASINO DESTINATION" data-zh="值得信賴的澳洲線上娛樂城<br class='pc-br'> <em>與真錢老虎機旗艦</em>">AUSTRALIA'S PREMIER ONLINE POKIES<br class="pc-br"> <em>& REAL MONEY CASINO DESTINATION</em></h2>
+      </div>
+
+      <div class="prose reveal">
+        <h3 data-en="The Ultimate Destination for Real Money Online Pokies in Australia" data-zh="全澳真錢線上老虎機（Pokies）極致首選入口">The Ultimate Destination for Real Money Online Pokies in Australia</h3>
+        <p data-en="Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots. Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin."
+           data-zh="專為眼光獨到的澳洲玩家（Punters）量身打造，本平台已成為全澳最可靠、最全面的真錢線上娛樂城。我們擁有龐大的認證遊戲庫，滿足各類玩家的喜好——從經典的三軸水果機台，到最頂尖的現代視訊老虎機。在這裡，您可以探索全澳最受歡迎的 Hold and Win 機台、提供超過 117,649 種獲勝方式的高波動度 Megaways 玩法，以及具備改變命運彩金的累積彩池大獎（Progressive Jackpots）。每款遊戲皆具備經第三方驗證的真實返還率（RTP），確保每次旋轉都擁有透明的數學模型與真實的爆獎潛力。">
+          Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots. Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin.
+        </p>
+
+        <h3 data-en="Immersive Live Dealer Tables: Blackjack, Roulette & Baccarat" data-zh="身臨其境的真人視訊牌桌：二十一點、輪盤與百家樂">Immersive Live Dealer Tables: Blackjack, Roulette & Baccarat</h3>
+        <p data-en="For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap. Broadcast directly in crystal-clear HD with professional live dealers, you can take your virtual seat at live Blackjack tables, experience European and American Roulette, or dive into rapid-fire Baccarat action. Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers, we deliver the authentic casino floor atmosphere directly to your desktop and mobile devices."
+           data-zh="針對渴望體驗墨爾本皇冠（Crown Melbourne）或雪梨星億（The Star Sydney）等傳統實體賭場氛圍的玩家，我們的高畫質真人娛樂城完美消除了線上與線下的界線。所有牌桌均以頂級高畫質清晰實況轉播，並由專業荷官即時發牌。您可以隨時在真人二十一點入座、體驗歐式與美式輪盤的轉動心跳，或沉浸在緊湊明快的百家樂對局中。透過即時路單數據、直覺的操作介面，以及兼顧休閒賭客與高額投注者（High Rollers）的彈性限額，將最純正的賭場氛圍無縫呈現在您的電腦與行動裝置上。">
+          For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap. Broadcast directly in crystal-clear HD with professional live dealers, you can take your virtual seat at live Blackjack tables, experience European and American Roulette, or dive into rapid-fire Baccarat action. Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers, we deliver the authentic casino floor atmosphere directly to your desktop and mobile devices.
+        </p>
+
+        <h3 data-en="Fast Payouts, Native AUD Banking & Seamless PayID Integration" data-zh="極速出金、原生澳幣（AUD）結算與 PayID 即時存取">Fast Payouts, Native AUD Banking & Seamless PayID Integration</h3>
+        <p data-en="We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market, allowing you to deposit and withdraw in native Australian Dollars (AUD) with zero hidden conversion fees. Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum. Protected by enterprise-tier 256-bit SSL encryption protocols, your financial transactions and sensitive account details are safeguarded round the clock."
+           data-zh="我們深知快速、順暢的提款體驗是衡量一家值得信賴娛樂城的核心標準。我們的金流架構專為澳洲市場深度客製，支援原生澳幣（AUD）進行存提款，完全無任何隱藏匯率折損。玩家可透過全澳最普及的 PayID 與本地銀行轉帳享受即時到帳與極速出金，亦可選擇 USDT、比特幣（BTC）及以太坊（ETH）等主流加密貨幣快速結算。所有金融交易均受企業級 256 位元 SSL 高強度加密協議保護，全天候守護您的資金安全與個人隱私。">
+          We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market, allowing you to deposit and withdraw in native Australian Dollars (AUD) with zero hidden conversion fees. Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum. Protected by enterprise-tier 256-bit SSL encryption protocols, your financial transactions and sensitive account details are safeguarded round the clock.
+        </p>
+
+        <h3 data-en="Certified Fairness, Independent Audits & Responsible Play Commitment" data-zh="認證公平性、獨立第三方審計與理性博弈承諾">Certified Fairness, Independent Audits & Responsible Play Commitment</h3>
+        <p data-en="Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) governing our pokie machines and virtual table games undergo rigorous auditing by independent testing laboratories, including eCOGRA and iTech Labs. Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools, including customizable deposit caps, cooling-off breaks, and self-exclusion mechanisms, ensuring your gaming remains safe, sustainable, and purely entertaining."
+           data-zh="公平性是我們絕不妥協的底線。本平台在國際牌照架構下嚴格營運，所有驅動老虎機與虛擬桌遊的隨機亂數產生器（RNG），皆經由 eCOGRA 和 iTech Labs 等權威獨立檢驗機構的嚴格審計認證。在提供公正透明對局的同時，我們於各項營運環節堅定推廣理性博弈。我們為澳洲玩家提供全方位的保護工具，包含自訂存款上限、冷靜期設定與自我限制機制，確保每位玩家的娛樂體驗始終保持在健康、安全且自律的軌道上。">
+          Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) governing our pokie machines and virtual table games undergo rigorous auditing by independent testing laboratories, including eCOGRA and iTech Labs. Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools, including customizable deposit caps, cooling-off breaks, and self-exclusion mechanisms, ensuring your gaming remains safe, sustainable, and purely entertaining.
+        </p>
+      </div>
     </div>
-
-    <div class="prose reveal">
-      <!-- 模組 1：品牌定位與老虎機深度介紹 -->
-      <h3 data-en="The Ultimate Destination for Real Money Online Pokies in Australia" data-zh="全澳真錢線上老虎機（Pokies）極致首選入口">The Ultimate Destination for Real Money Online Pokies in Australia</h3>
-      <p data-en="Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots. Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin."
-         data-zh="專為眼光獨到的澳洲玩家（Punters）量身打造，本平台已成為全澳最可靠、最全面的真錢線上娛樂城。我們擁有龐大的認證遊戲庫，滿足各類玩家的喜好——從經典的三軸水果機台，到最頂尖的現代視訊老虎機。在這裡，您可以探索全澳最受歡迎的 Hold and Win 機台、提供超過 117,649 種獲勝方式的高波動度 Megaways 玩法，以及具備改變命運彩金的累積彩池大獎（Progressive Jackpots）。每款遊戲皆具備經第三方驗證的真實返還率（RTP），確保每次旋轉都擁有透明的數學模型與真實的爆獎潛力。">
-        Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots. Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin.
-      </p>
-
-      <!-- 模組 2：真人娛樂與桌上遊戲 -->
-      <h3 data-en="Immersive Live Dealer Tables: Blackjack, Roulette & Baccarat" data-zh="身臨其境的真人視訊牌桌：二十一點、輪盤與百家樂">Immersive Live Dealer Tables: Blackjack, Roulette & Baccarat</h3>
-      <p data-en="For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap. Broadcast directly in crystal-clear HD with professional live dealers, you can take your virtual seat at live Blackjack tables, experience European and American Roulette, or dive into rapid-fire Baccarat action. Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers, we deliver the authentic casino floor atmosphere directly to your desktop and mobile devices."
-         data-zh="針對渴望體驗墨爾本皇冠（Crown Melbourne）或雪梨星億（The Star Sydney）等傳統實體賭場氛圍的玩家，我們的高畫質真人娛樂城完美消除了線上與線下的界線。所有牌桌均以頂級高畫質清晰實況轉播，並由專業荷官即時發牌。您可以隨時在真人二十一點入座、體驗歐式與美式輪盤的轉動心跳，或沉浸在緊湊明快的百家樂對局中。透過即時路單數據、直覺的操作介面，以及兼顧休閒賭客與高額投注者（High Rollers）的彈性限額，將最純正的賭場氛圍無縫呈現在您的電腦與行動裝置上。">
-        For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap. Broadcast directly in crystal-clear HD with professional live dealers, you can take your virtual seat at live Blackjack tables, experience European and American Roulette, or dive into rapid-fire Baccarat action. Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers, we deliver the authentic casino floor atmosphere directly to your desktop and mobile devices.
-      </p>
-
-      <!-- 模組 3：金流、PayID 與快速出金 -->
-      <h3 data-en="Fast Payouts, Native AUD Banking & Seamless PayID Integration" data-zh="極速出金、原生澳幣（AUD）結算與 PayID 即時存取">Fast Payouts, Native AUD Banking & Seamless PayID Integration</h3>
-      <p data-en="We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market, allowing you to deposit and withdraw in native Australian Dollars (AUD) with zero hidden conversion fees. Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum. Protected by enterprise-tier 256-bit SSL encryption protocols, your financial transactions and sensitive account details are safeguarded round the clock."
-         data-zh="我們深知快速、順暢的提款體驗是衡量一家值得信賴娛樂城的核心標準。我們的金流架構專為澳洲市場深度客製，支援原生澳幣（AUD）進行存提款，完全無任何隱藏匯率折損。玩家可透過全澳最普及的 PayID 與本地銀行轉帳享受即時到帳與極速出金，亦可選擇 USDT、比特幣（BTC）及以太坊（ETH）等主流加密貨幣快速結算。所有金融交易均受企業級 256 位元 SSL 高強度加密協議保護，全天候守護您的資金安全與個人隱私。">
-        We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market, allowing you to deposit and withdraw in native Australian Dollars (AUD) with zero hidden conversion fees. Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum. Protected by enterprise-tier 256-bit SSL encryption protocols, your financial transactions and sensitive account details are safeguarded round the clock.
-      </p>
-
-      <!-- 模組 4：合規審計、RNG 與理性博弈承諾 -->
-      <h3 data-en="Certified Fairness, Independent Audits & Responsible Play Commitment" data-zh="認證公平性、獨立第三方審計與理性博弈承諾">Certified Fairness, Independent Audits & Responsible Play Commitment</h3>
-      <p data-en="Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) governing our pokie machines and virtual table games undergo rigorous auditing by independent testing laboratories, including eCOGRA and iTech Labs. Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools, including customizable deposit caps, cooling-off breaks, and self-exclusion mechanisms, ensuring your gaming remains safe, sustainable, and purely entertaining."
-         data-zh="公平性是我們絕不妥協的底線。本平台在國際牌照架構下嚴格營運，所有驅動老虎機與虛擬桌遊的隨機亂數產生器（RNG），皆經由 eCOGRA 和 iTech Labs 等權威獨立檢驗機構的嚴格審計認證。在提供公正透明對局的同時，我們於各項營運環節堅定推廣理性博弈。我們為澳洲玩家提供全方位的保護工具，包含自訂存款上限、冷靜期設定與自我限制機制，確保每位玩家的娛樂體驗始終保持在健康、安全且自律的軌道上。">
-        Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) governing our pokie machines and virtual table games undergo rigorous auditing by independent testing laboratories, including eCOGRA and iTech Labs. Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools, including customizable deposit caps, cooling-off breaks, and self-exclusion mechanisms, ensuring your gaming remains safe, sustainable, and purely entertaining.
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- ============================================================================
-       【區塊 14】常見問答 (FAQ - 改為純閱讀卡片，不誤跳)
+       【區塊 14】常見問答 (FAQ)
        ============================================================================ -->
   <section id="faq">
     <div class="wrap">
@@ -951,42 +976,34 @@
       </div>
 
       <div class="faq-list reveal">
-        <!-- Q1 -->
         <div class="faq-item">
           <h3 data-en="How do I claim the 'Deposit $20 Get $70' bonus?" data-zh="如何領取「充 $20 送 $70」迎新彩金？">How do I claim the 'Deposit $20 Get $70' bonus?</h3>
           <p data-en="Simply complete account registration, head over to the Promotion center, opt-in for the package, and initiate your first qualifying deposit." data-zh="完成帳號註冊後，前往活動中心勾點選迎新專屬禮包，完成首次入金後系統將自動加贈。">Simply complete account registration, head over to the Promotion center.</p>
         </div>
-        <!-- Q2 -->
         <div class="faq-item">
           <h3 data-en="Are these online pokies legally certified?" data-zh="這些線上機台是否經過合法認證？">Are these online pokies legally certified?</h3>
           <p data-en="Yes. Every game is supplied by globally audited providers equipped with validated Random Number Generators (RNG)." data-zh="是的。所有遊戲皆由國際審計合格的頂級遊戲商提供，內建 RNG 演算法確保結果絕對隨機公平。">Yes. Every game is supplied by globally audited providers.</p>
         </div>
-        <!-- Q3 -->
         <div class="faq-item">
           <h3 data-en="Do I need to download a standalone app?" data-zh="必須下載或安裝 APP 才能遊玩嗎？">Do I need to download a standalone app?</h3>
           <p data-en="No installation is required. Our entire gaming suite runs smoothly on iOS Safari, Android Chrome, and PC browsers." data-zh="完全不需安裝。整套遊戲架構完全相容 iOS Safari、Android Chrome 及電腦瀏覽器，開啟即玩。">No installation is required.</p>
         </div>
-        <!-- Q4 -->
         <div class="faq-item">
           <h3 data-en="What are the withdrawal processing times?" data-zh="提款申請需要處理多久？">What are the withdrawal processing times?</h3>
           <p data-en="Local Australian payouts are processed through automated channels, typically clearing within minutes after turnover approval." data-zh="澳洲在地提款走全自動結算通道，達到流水要求後通常數分鐘內即可審核出款。">Local Australian payouts are processed through automated channels.</p>
         </div>
-        <!-- Q5 -->
         <div class="faq-item">
           <h3 data-en="How does the 10-Tier VIP Program function?" data-zh="12級 VIP 會員制度如何運作？">How does the 10-Tier VIP Program function?</h3>
           <p data-en="Your status upgrades automatically based on gameplay turnover, unlocking lifetime monthly rebates and personalized gifts." data-zh="VIP等級隨累積流水、儲值自動晉升，享有更高等級的流水返水、每月紅利與專屬客服。">Your status upgrades automatically based on gameplay turnover.</p>
         </div>
-        <!-- Q6 -->
         <div class="faq-item">
           <h3 data-en="Is there a daily limit on rollover rebates?" data-zh="每日流水返水有上限限制嗎？">Is there a daily limit on rollover rebates?</h3>
           <p data-en="Daily rebates are calculated dynamically based on your volume with generous payout ceilings for active members." data-zh="每日返水根據個人有效流水自動計算，對活躍會員提供業界最高上限標準。">Daily rebates are calculated dynamically based on your volume.</p>
         </div>
-        <!-- Q7 -->
         <div class="faq-item">
           <h3 data-en="What should I do if I encounter an issue during deposit?" data-zh="入金或遊戲遇到問題該如何尋求協助？">What should I do if I encounter an issue during deposit?</h3>
           <p data-en="Our dedicated live chat team operates 24 hours a day, 7 days a week to resolve any technical inquiries promptly." data-zh="我們的線上客服團隊全年無休 24/7 在線，隨時為您排除入金與遊戲障礙。">Our dedicated live chat team operates 24 hours a day.</p>
         </div>
-        <!-- Q8 -->
         <div class="faq-item">
           <h3 data-en="Who is eligible to open an account?" data-zh="誰可以註冊平台帳號？">Who is eligible to open an account?</h3>
           <p data-en="Any player aged 18 or above who satisfies responsible gaming requirements may register." data-zh="凡年滿 18 歲且符合理性娛樂規範的玩家，皆可免費註冊專屬帳戶。">Any player aged 18 or above who satisfies responsible gaming requirements.</p>
@@ -996,7 +1013,7 @@
   </section>
 
   <!-- ============================================================================
-       【區塊 15】頁尾閉環 CTA + 官方合規版權 (保留跳轉)
+       【區塊 15】頁尾閉環 CTA + 官方合規版權
        ============================================================================ -->
   <section id="final">
     <div class="wrap">
@@ -1038,7 +1055,6 @@
   <!-- ============================================================================
        【區塊 16】核心動態引擎 (多連結支援 + 參數無損打包 + 150ms 緩衝 + 輪播 + 雙語)
        ============================================================================ -->
- 
   <script>
     // -------------------------------------------------------------
     // 1. 動態跳轉引擎 (支援個別按鈕自訂 data-href 網址 + 參數繼承)
@@ -1049,7 +1065,7 @@
       
       const targetObj = new URL(targetBase, window.location.origin);
       const currentParams = new URLSearchParams(window.location.search);
-  
+
       currentParams.forEach((val, key) => {
         if (!targetObj.searchParams.has(key)) {
           targetObj.searchParams.set(key, val);
@@ -1057,8 +1073,29 @@
       });
 
       return targetObj.toString();
+    }
+
+    // -------------------------------------------------------------
+    // 2. 📱 手機抽屜選單展開 / 收合控制 (獨立放置，運行流暢)
+    // -------------------------------------------------------------
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.toggle('active');
+      if (menuToggle) {
+        menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
       }
-    // 全站點擊攔截 (只攔截帶有 .track-outbound 的指定按鈕)
+    }
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', toggleMenu);
+    }
+
+    // -------------------------------------------------------------
+    // 3. 全站點擊攔截 (只攔截帶有 .track-outbound 的指定按鈕)
+    // -------------------------------------------------------------
     document.addEventListener('click', function(e) {
       const target = e.target.closest('.track-outbound');
       if (!target) return;
@@ -1081,7 +1118,7 @@
     });
 
     // -------------------------------------------------------------
-    // 2. ✨ 滑鼠動態跟隨光斑
+    // 4. ✨ 滑鼠動態跟隨光斑
     // -------------------------------------------------------------
     (function() {
       const glow = document.getElementById('cursor-glow');
@@ -1094,11 +1131,11 @@
     })();
 
     // -------------------------------------------------------------
-    // 3. ✨ 中英雙語秒級無刷新切換引擎
+    // 5. ✨ 中英雙語秒級無刷新切換引擎 (支援電腦版與手機抽屜雙切換)
     // -------------------------------------------------------------
     (function() {
       const btn = document.getElementById('langBtn');
-      if (!btn) return;
+      const drawerBtn = document.getElementById('langBtnDrawer');
       let currentLang = 'en';
 
       function toggleLanguage() {
@@ -1109,15 +1146,18 @@
             el.innerHTML = text;
           }
         });
-        btn.textContent = (currentLang === 'en') ? '中文' : 'EN';
+        const label = (currentLang === 'en') ? '中文' : 'EN';
+        if (btn) btn.textContent = label;
+        if (drawerBtn) drawerBtn.textContent = label;
         document.documentElement.lang = (currentLang === 'en') ? 'en-AU' : 'zh';
       }
 
-      btn.addEventListener('click', toggleLanguage);
+      if (btn) btn.addEventListener('click', toggleLanguage);
+      if (drawerBtn) drawerBtn.addEventListener('click', toggleLanguage);
     })();
 
     // -------------------------------------------------------------
-    // 4. 🎠 BANNER 觸控拖曳實時反饋與自動輪播引擎
+    // 6. 🎠 BANNER 觸控拖曳實時反饋與自動輪播引擎
     // -------------------------------------------------------------
     (function() {
       const track = document.getElementById('carouselTrack');
@@ -1218,7 +1258,7 @@
     })();
 
     // -------------------------------------------------------------
-    // 5. 滾動淡入 IntersectionObserver
+    // 7. 滾動淡入 IntersectionObserver
     // -------------------------------------------------------------
     (function() {
       if (!('IntersectionObserver' in window)) return;
