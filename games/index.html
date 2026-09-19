@@ -6,20 +6,24 @@
 
   <!-- 
   ================================================================================
-  🎮 【分頁專用】精選遊戲大廳・獨立 SEO 與廠商評測頁 (CHEAT SHEET 小抄)
+  🎮 【分頁專用】精選遊戲大廳・頂級 SEO 權威架構版 (CHEAT SHEET 小抄)
   ================================================================================
   📌 日常換皮 3 分鐘速查指南：
      Step 1. 【區塊 1】ACTIVE_PIXEL_ID  : 換成對應的 Meta 像素 ID
-     Step 2. 【區塊 2】SEO 標題與品牌詞  : 搜尋「MATE369」替換成新品牌名稱
-     Step 3. 【區塊 16】defaultRegisterUrl: 預設註冊連結
-     Step 4. 本頁面需要的圖片素材全放於根目錄：
-             - logo.ico / logo.webp
-             - view.webp (背景城市圖)
+     Step 2. 【區塊 2】SEO 標題與品牌詞  : 全域搜尋「MATE369」替換成新品牌名
+     Step 3. 【區塊 4】CSS 品牌主色調    : 保持與主頁一致，若需變色改 :root 即可
+     Step 4. 【區塊 16】defaultRegisterUrl: 換成包網註冊直出線
+     Step 5. 素材清單 (直接放於根目錄，本分頁自動透過 ../ 讀取)：
+             - logo.webp / logo.ico
+             - view.webp (龐克城市背景圖)
              - bng.webp, pp.webp, pg.webp, sports.webp, casino.webp, FS.webp
+             - 備用防破圖底圖：b1.webp, b2.webp, b3.webp
   ================================================================================
   -->
 
-  <!-- 【區塊 1】META 像素追蹤 -->
+  <!-- ============================================================================
+       【區塊 1】META 像素追蹤 (換案子只需改 ACTIVE_PIXEL_ID)
+       ============================================================================ -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -38,21 +42,33 @@
     }
   </script>
 
-  <!-- 【區塊 2】SEO 結構與分頁標題 -->
-  <title>MATE369 | Certified Game Providers & High-RTP Pokies Hall</title>
+  <!-- ============================================================================
+       【區塊 2】SEO 結構與分頁標題
+       ============================================================================ -->
+  <title>MATE369 | Official Certified Game Providers & High-RTP Pokies Hall</title>
   <meta name="description" content="Explore certified online casino game providers at MATE369 Australia. Discover high-RTP slots, live tables, and arcade games from BNG, Pragmatic Play, PG Soft, SBOBET, and MT Live.">
-  <meta name="robots" content="index,follow">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  
+  <meta name="geo.region" content="AU">
+  <meta name="geo.placename" content="Australia">
+  <meta name="geo.position" content="-25.2744;133.7751">
+  <meta name="ICBM" content="-25.2744,133.7751">
+
   <link rel="icon" href="../logo.ico" type="image/x-icon">
 
-  <!-- 【區塊 3】Google 科技電競字體引入 (與主頁完全一致) -->
+  <!-- ============================================================================
+       【區塊 3】GOOGLE 科技電競字體引入 (與主頁 100% 一致)
+       ============================================================================ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;1,700;1,900&family=Noto+Sans+SC:wght@400;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- 【區塊 4】CSS 視覺體系 (100% 承襲主頁風格) -->
+  <!-- ============================================================================
+       【區塊 4】全站樣式體系 (CSS 視覺控制中心)
+       ============================================================================ -->
   <style>
     :root {
-      /* 🎨 與主頁完全一致的品牌色盤 */
+      /* 🎨 與主頁母版完全一致的品牌色盤 */
       --bg: #031c10;
       --panel: rgba(4, 40, 24, 0.85);
       --panel-solid: #052d1a;
@@ -81,7 +97,7 @@
       padding-top: var(--nav-height);
     }
 
-    /* 🏙️ 主頁同款：背景城市、覆蓋層、網格與掃描線 */
+    /* 🏙️ 主頁同款背景：城市圖、覆蓋層、網格與掃描線 */
     .bg-city {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background: url('../view.webp') center top / cover no-repeat fixed;
@@ -102,7 +118,7 @@
       background: repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 1px, transparent 1px 3px);
     }
 
-    /* ✨ 滑鼠動態光斑 */
+    /* ✨ 滑鼠光斑 */
     #cursor-glow {
       position: fixed; width: 450px; height: 450px; border-radius: 50%;
       pointer-events: none; z-index: 1;
@@ -113,7 +129,7 @@
 
     .wrap { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 
-    /* 📌 吸頂導航欄 */
+    /* 📌 導航欄 (吸頂) */
     nav {
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
       z-index: 999; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
@@ -123,14 +139,13 @@
       max-width: 1180px; height: 100%; margin: 0 auto; padding: 0 20px;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .logo-box { display: flex; align-items: center; text-decoration: none; }
+    .logo-box { display: flex; align-items: center; text-decoration: none; cursor: pointer; }
     .logo-img { height: var(--logo-height-pc); width: auto; max-width: 220px; object-fit: contain; display: block; }
+    .logo-fallback { display: none; align-items: center; gap: 8px; font-family: "Chakra Petch"; font-weight: 700; font-style: italic; font-size: 1.25rem; color: #fff; }
+    .logo-fallback .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--magenta); box-shadow: 0 0 12px var(--magenta); }
 
     .nav-links { display: flex; align-items: center; gap: 18px; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.95rem;
-      text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s;
-    }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--magenta); }
     .lang {
       cursor: pointer; border: 1px solid var(--line); padding: 5px 12px;
@@ -140,14 +155,14 @@
     }
     .lang:hover { color: #fff; border-color: var(--magenta); }
 
-    /* 📱 漢堡選單按鈕 (手機端顯示，電腦端隱藏) */
+    /* 📱 漢堡按鈕樣式 */
     .menu-toggle {
       display: none; background: none; border: 1px solid var(--line);
       color: var(--magenta); font-size: 1.4rem; padding: 4px 10px;
       cursor: pointer; border-radius: 4px; line-height: 1;
     }
 
-    /* 📱 手機抽屜導航菜單 */
+    /* 📱 手機抽屜菜單樣式 */
     .mobile-menu {
       display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
       background: rgba(3, 28, 16, 0.98); border-bottom: 1px solid var(--line);
@@ -162,7 +177,7 @@
     }
     .mobile-menu a.active { color: var(--magenta); }
 
-    /* 科技切角按鈕 */
+    /* 科技切角按鈕體系 */
     .btn {
       position: relative; display: inline-flex; align-items: center; justify-content: center;
       font-family: "Chakra Petch"; font-weight: 700; font-style: italic; letter-spacing: 0.5px;
@@ -192,7 +207,7 @@
     }
 
     /* 頁面標題區 */
-    header { padding: 40px 0 24px; text-align: center; }
+    header { padding: 32px 0 20px; text-align: center; }
     .badge {
       display: inline-flex; align-items: center; gap: 8px; font-family: "Chakra Petch";
       font-size: 0.76rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--magenta);
@@ -212,29 +227,83 @@
       background: linear-gradient(90deg, #00ff88, #25d366, #ffc700);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .sub { max-width: 720px; margin: 12px auto 0; color: var(--text); font-size: 1rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+    .sub { max-width: 720px; margin: 10px auto 0; color: var(--text); font-size: 0.98rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
 
-    /* 6 大遊戲廠商網格 (支援滑鼠 Hover 電腦反饋) */
-    .games-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 36px 0 60px; }
+    /* ⚡ 4 大權威審計指標條 */
+    .metrics-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      max-width: 980px; margin: 24px auto 0;
+      background: var(--panel); border: 1px solid var(--line); padding: 14px 16px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+    }
+    .metric-item { text-align: center; border-right: 1px solid var(--line); }
+    .metric-item:last-child { border-right: none; }
+    .metric-num { font-family: "Chakra Petch"; font-size: 1.45rem; font-weight: 700; font-style: italic; color: var(--gold); }
+    .metric-lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; margin-top: 2px; }
+
+    /* 🏷️ 5 大分類篩選膠囊 (Filter Tabs) */
+    .filter-wrapper {
+      display: flex; justify-content: center; gap: 10px; margin: 28px 0 16px;
+      overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch;
+    }
+    .filter-btn {
+      white-space: nowrap; background: rgba(0, 255, 136, 0.06); border: 1px solid var(--line);
+      color: var(--text); font-family: "Chakra Petch"; font-weight: 700; font-style: italic;
+      font-size: 0.85rem; padding: 8px 18px; cursor: pointer; transition: 0.2s;
+      clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(0, 255, 136, 0.22); border-color: var(--magenta); color: var(--magenta);
+      box-shadow: 0 0 14px rgba(0, 255, 136, 0.25);
+    }
+
+    /* 6 大遊戲廠商網格 (支援分類隱藏/過濾動畫) */
+    .games-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
     .game-card {
       position: relative; border: 1px solid var(--line); overflow: hidden;
       color: var(--text); background: var(--panel-solid);
       clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
     }
+    .game-card.hide { display: none !important; }
     .game-card:hover { transform: translateY(-5px); border-color: var(--magenta); box-shadow: 0 0 28px rgba(0,255,136,0.35); }
     .game-thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #02120a; }
     .game-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
     .game-card:hover .game-thumb img { transform: scale(1.06); }
     .game-info { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: var(--panel-solid); border-top: 1px solid var(--line); }
-    .game-info h3 { font-family: "Chakra Petch", "Noto Sans SC"; font-size: 1.15rem; font-weight: 700; font-style: italic; }
-    .game-info .genre { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+    .game-info h3 { font-family: "Chakra Petch", "Noto Sans SC"; font-size: 1.12rem; font-weight: 700; font-style: italic; }
+    .game-info .genre { color: var(--gold); font-size: 0.78rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
     .btn-inspect {
       font-family: "Chakra Petch"; font-weight: 700; font-style: italic; font-size: 0.82rem;
       color: var(--magenta); display: flex; align-items: center; gap: 4px;
     }
 
-    /* 彈窗 (Modal) - 具備磨砂背景與自帶該遊戲 Banner */
+    /* 📖 SEO 實體長文指南 (手機端可折疊) */
+    .guide-section {
+      background: var(--panel); border: 1px solid var(--line); padding: 32px 28px;
+      margin: 20px auto 48px; max-width: 1180px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+    }
+    .guide-title {
+      font-family: "Chakra Petch", "Noto Sans SC"; font-weight: 700; font-style: italic;
+      font-size: 1.45rem; color: var(--gold); margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+    }
+    .guide-content {
+      color: #DBFFEC; font-size: 0.95rem; line-height: 1.8;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9); transition: max-height 0.4s ease;
+    }
+    .guide-content h4 {
+      font-family: "Chakra Petch"; color: var(--magenta); font-size: 1.05rem;
+      margin: 18px 0 6px;
+    }
+    .guide-toggle-btn {
+      display: none; width: 100%; margin-top: 14px; background: rgba(0,255,136,0.1);
+      border: 1px solid var(--line); color: var(--magenta); font-family: "Chakra Petch";
+      font-size: 0.88rem; font-weight: 700; padding: 10px; cursor: pointer; text-align: center;
+    }
+
+    /* 彈窗 (Modal 結構：頂部自帶同一張 Banner 大圖) */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88);
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -265,7 +334,7 @@
     .modal-prose ul { padding-left: 20px; margin-bottom: 12px; }
     .modal-prose li { margin-bottom: 4px; }
 
-    /* 頁尾轉換卡片 (與主頁完全一致) */
+    /* 頁尾轉換卡片 (與主頁一致) */
     .final-cta {
       background: linear-gradient(150deg, var(--panel-solid), rgba(0,255,136,0.1));
       border: 1px solid var(--line); padding: 48px 24px; text-align: center; margin-bottom: 60px;
@@ -289,10 +358,25 @@
       .menu-toggle { display: block; }
       .logo-img { height: var(--logo-height-mobile); }
       #cursor-glow { display: none; }
-      header { padding: 20px 0 16px; }
+      header { padding: 20px 0 14px; }
       h1 { font-size: 2.1rem; }
       .sub { font-size: 0.92rem; }
-      .games-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 24px; }
+      
+      .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .metric-item:nth-child(2) { border-right: none; }
+      .metric-item:nth-child(3) { border-top: 1px solid var(--line); padding-top: 8px; }
+      .metric-item:nth-child(4) { border-top: 1px solid var(--line); padding-top: 8px; }
+      
+      .filter-wrapper { justify-content: flex-start; padding-left: 4px; }
+      .games-grid { grid-template-columns: 1fr; gap: 14px; }
+      
+      .guide-content.collapsed { max-height: 140px; overflow: hidden; position: relative; }
+      .guide-content.collapsed::after {
+        content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
+        background: linear-gradient(transparent, rgba(4, 40, 24, 0.95)); pointer-events: none;
+      }
+      .guide-toggle-btn { display: block; }
+
       .modal-box { max-height: 92vh; }
       .modal-content { padding: 18px; }
     }
@@ -307,11 +391,12 @@
   <div class="scan"></div>
   <div id="cursor-glow"></div>
 
-  <!-- 【區塊 6】頂部導航欄 (具備手機漢堡選單抽屜) -->
+  <!-- 【區塊 6】頂部導航欄 (具備手機漢堡抽屜選單) -->
   <nav>
     <div class="nav-in">
       <a class="logo-box" href="../">
         <img src="../logo.webp" alt="MATE369 Logo" class="logo-img" onerror="this.src='../logo.ico'">
+        <span class="logo-fallback"><span class="dot"></span><span>MATE369</span></span>
       </a>
 
       <!-- 電腦版選單 -->
@@ -325,11 +410,8 @@
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
       </div>
 
-      <!-- 手機端選單按鈕 -->
-      <div style="display:flex; align-items:center; gap:8px;">
-        <button class="lang" id="langBtnMobile" style="display:none;">EN</button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
-      </div>
+      <!-- 手機端漢堡圖示 -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
     </div>
   </nav>
 
@@ -352,25 +434,54 @@
     <header class="reveal">
       <div class="badge">
         <span class="pulse"></span>
-        <span data-en="OFFICIAL CERTIFIED PROVIDERS" data-zh="官方認證六大頂級廠商">OFFICIAL CERTIFIED PROVIDERS</span>
+        <span data-en="OFFICIAL AUDITED GAME PROVIDERS" data-zh="官方認證六大頂級廠商大廳">OFFICIAL AUDITED GAME PROVIDERS</span>
       </div>
 
       <h1>
-        <span class="l1" data-en="TOP RATED GAME HALL" data-zh="頂級遊戲大廳">TOP RATED GAME HALL</span>
-        <span class="l2" data-en="VERIFIED FAIR RTP" data-zh="國際認證真實出金率">VERIFIED FAIR RTP</span>
+        <span class="l1" data-en="PREMIUM GAME PORTAL" data-zh="頂級遊戲大廳">PREMIUM GAME PORTAL</span>
+        <span class="l2" data-en="VERIFIED RTP &amp; AUDITED SLOTS" data-zh="國際認證真實出金率">VERIFIED RTP &amp; AUDITED SLOTS</span>
       </h1>
 
-      <p class="sub" data-en="Click on any provider banner below to inspect official audit RTP percentages, jackpot mechanics, and featured releases."
-                     data-zh="點擊下方任一遊戲廠商橫幅，即可檢視國際機構認證 RTP、累積彩金機制與熱門推薦機台。">
-        Click on any provider banner below to inspect official audit RTP percentages, jackpot mechanics, and featured releases.
+      <p class="sub" data-en="Discover certified high-RTP slots, interactive live tables, and sports markets. Filter by category or tap any provider to inspect audited payout statistics."
+                     data-zh="暢玩專為澳洲玩家嚴選的頂級高 RTP 機台、真人視訊及街機遊戲。點擊類別篩選或點選任一廠商即可查看官方合規數據與熱門遊戲詳情。">
+        Discover certified high-RTP slots, interactive live tables, and sports markets. Filter by category or tap any provider to inspect audited payout statistics.
       </p>
+
+      <!-- ⚡ 4 大權威審計指標條 -->
+      <div class="metrics-bar">
+        <div class="metric-item">
+          <div class="metric-num">6+</div>
+          <div class="metric-lbl" data-en="TIER-1 STUDIOS" data-zh="國際頂級授權商">TIER-1 STUDIOS</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-num">96.8%</div>
+          <div class="metric-lbl" data-en="AVERAGE RTP" data-zh="全館平均認證RTP">AVERAGE RTP</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-num">100%</div>
+          <div class="metric-lbl" data-en="HTML5 NATIVE" data-zh="全端免下載秒開">HTML5 NATIVE</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-num">24/7</div>
+          <div class="metric-lbl" data-en="UPTIME AUDIT" data-zh="全天候穩定連線">UPTIME AUDIT</div>
+        </div>
+      </div>
+
+      <!-- 🏷️ 5 大分類篩選膠囊 -->
+      <div class="filter-wrapper">
+        <button class="filter-btn active" onclick="filterGames('all', this)" data-en="All Games" data-zh="全部遊戲">All Games</button>
+        <button class="filter-btn" onclick="filterGames('slots', this)" data-en="Pokies / Slots" data-zh="熱門老虎機">Pokies / Slots</button>
+        <button class="filter-btn" onclick="filterGames('live', this)" data-en="Live Casino" data-zh="真人視訊">Live Casino</button>
+        <button class="filter-btn" onclick="filterGames('sports', this)" data-en="Sportsbook" data-zh="體育滾球">Sportsbook</button>
+        <button class="filter-btn" onclick="filterGames('arcade', this)" data-en="Fish &amp; Arcade" data-zh="街機捕魚">Fish &amp; Arcade</button>
+      </div>
     </header>
 
-    <!-- 6 大廠商網格 (純淨 Banner，無覆蓋標籤，點擊觸發彈窗) -->
-    <div class="games-grid reveal">
+    <!-- 6 大廠商網格 (純淨 Banner，點擊觸發彈窗) -->
+    <div class="games-grid reveal" id="gamesGrid">
       
-      <!-- 1. BNG -->
-      <div class="game-card" onclick="openGameModal('bng')">
+      <!-- 1. BNG (分類: slots) -->
+      <div class="game-card" data-category="slots" onclick="openGameModal('bng')">
         <div class="game-thumb">
           <img src="../bng.webp" alt="BNG Slots" onerror="this.src='../b1.webp'">
         </div>
@@ -383,8 +494,8 @@
         </div>
       </div>
 
-      <!-- 2. PP -->
-      <div class="game-card" onclick="openGameModal('pp')">
+      <!-- 2. PP (分類: slots) -->
+      <div class="game-card" data-category="slots" onclick="openGameModal('pp')">
         <div class="game-thumb">
           <img src="../pp.webp" alt="Pragmatic Play" onerror="this.src='../b2.webp'">
         </div>
@@ -397,8 +508,8 @@
         </div>
       </div>
 
-      <!-- 3. PG -->
-      <div class="game-card" onclick="openGameModal('pg')">
+      <!-- 3. PG (分類: slots) -->
+      <div class="game-card" data-category="slots" onclick="openGameModal('pg')">
         <div class="game-thumb">
           <img src="../pg.webp" alt="PG Soft" onerror="this.src='../b3.webp'">
         </div>
@@ -411,8 +522,8 @@
         </div>
       </div>
 
-      <!-- 4. SBOBET 體育 -->
-      <div class="game-card" onclick="openGameModal('sbo')">
+      <!-- 4. SBOBET 體育 (分類: sports) -->
+      <div class="game-card" data-category="sports" onclick="openGameModal('sbo')">
         <div class="game-thumb">
           <img src="../sports.webp" alt="SBOBET Sports" onerror="this.src='../b1.webp'">
         </div>
@@ -425,8 +536,8 @@
         </div>
       </div>
 
-      <!-- 5. MT 真人 -->
-      <div class="game-card" onclick="openGameModal('mt')">
+      <!-- 5. MT 真人 (分類: live) -->
+      <div class="game-card" data-category="live" onclick="openGameModal('mt')">
         <div class="game-thumb">
           <img src="../casino.webp" alt="MT Casino" onerror="this.src='../b2.webp'">
         </div>
@@ -439,8 +550,8 @@
         </div>
       </div>
 
-      <!-- 6. 街機捕魚 -->
-      <div class="game-card" onclick="openGameModal('fish')">
+      <!-- 6. 街機捕魚 (分類: arcade) -->
+      <div class="game-card" data-category="arcade" onclick="openGameModal('fish')">
         <div class="game-thumb">
           <img src="../FS.webp" alt="Fishing Arcade" onerror="this.src='../b3.webp'">
         </div>
@@ -455,7 +566,28 @@
 
     </div>
 
-    <!-- 頁尾轉換卡片 -->
+    <!-- 📖 SEO 實體長文指南專區 (澳洲在地理性博弈與機台挑選指南) -->
+    <section class="guide-section reveal">
+      <div class="guide-title" data-en="AUSTRALIAN ONLINE POKIES &amp; CASINO PROVIDER GUIDE" data-zh="澳洲真錢線上老虎機與官方遊戲廠商選台指南">
+        AUSTRALIAN ONLINE POKIES &amp; CASINO PROVIDER GUIDE
+      </div>
+      <div class="guide-content collapsed" id="guideContent">
+        <h4 data-en="Understanding Audited RTP &amp; Volatility Metrics" data-zh="認識官方認證返還率 (RTP) 與波動度指數">Understanding Audited RTP &amp; Volatility Metrics</h4>
+        <p data-en="When spinning online pokies in Australia, Return to Player (RTP) is the statistical heartbeat of your session. A certified RTP of 96% or above guarantees an equitable house margin governed strictly by Random Number Generators (RNG). Studios like Pragmatic Play and PG Soft calibrate optimal math models to support extended play sessions while maintaining explosive potential on bonus features."
+           data-zh="在澳洲暢玩線上老虎機時，玩家返還率（RTP）是衡量機台公平性的核心指標。達到 96% 以上的高 RTP 機台，能確保極低的莊家優勢，並由經第三方實驗室審計的隨機亂數演算法（RNG）精準計算。Pragmatic Play 與 PG Soft 等頂級大廠均採用高規格數學模型，兼顧耐玩性與高額獎勵乘數。">
+          When spinning online pokies in Australia, Return to Player (RTP) is the statistical heartbeat of your session. A certified RTP of 96% or above guarantees an equitable house margin governed strictly by Random Number Generators (RNG). Studios like Pragmatic Play and PG Soft calibrate optimal math models to support extended play sessions while maintaining explosive potential on bonus features.
+        </p>
+
+        <h4 data-en="Mobile-Optimized HTML5 Architecture" data-zh="專為行動端最佳化的原生 HTML5 引擎">Mobile-Optimized HTML5 Architecture</h4>
+        <p data-en="Gone are the days of clumsy standalone application downloads. Our curated studios utilize pure HTML5 protocols, ensuring ultra-low bandwidth consumption, zero latency, and seamless touchscreen compatibility across Telstra, Optus, and Vodafone 4G/5G networks throughout Sydney, Melbourne, and Brisbane."
+           data-zh="告別過去繁瑣下載安裝包的時代。本專區所有合作大廠皆採用純原生 HTML5 協議開發，具備超低流量消耗、極速連線響應與自適應觸控回饋，完美支援澳洲各大電信 4G/5G 網路環境，隨時隨地開啟即玩。">
+          Gone are the days of clumsy standalone application downloads. Our curated studios utilize pure HTML5 protocols, ensuring ultra-low bandwidth consumption, zero latency, and seamless touchscreen compatibility across Telstra, Optus, and Vodafone 4G/5G networks throughout Sydney, Melbourne, and Brisbane.
+        </p>
+      </div>
+      <button class="guide-toggle-btn" id="guideToggleBtn" onclick="toggleGuide()" data-en="▼ Read Full Provider Guide" data-zh="▼ 展開閱讀完整廠商指南">▼ Read Full Provider Guide</button>
+    </section>
+
+    <!-- 頁尾轉換大卡片 -->
     <div class="final-cta reveal">
       <h2 data-en="READY TO SPIN<br><em>WITH YOUR $70 BONUS?</em>" data-zh="準備好暢玩各大廠商<br><em>領取 $70 彩金了嗎？</em>">
         READY TO SPIN<br><em>WITH YOUR $70 BONUS?</em>
@@ -492,7 +624,7 @@
     </div>
   </footer>
 
-  <!-- 彈窗 (Modal 結構：頂部自帶該廠商同一張 Banner) -->
+  <!-- 彈窗 (Modal 結構：頂部自帶同一張 Banner 大圖) -->
   <div class="modal-overlay" id="gameModal">
     <div class="modal-box">
       <button class="modal-close" onclick="closeGameModal()">&times;</button>
@@ -510,7 +642,9 @@
     </div>
   </div>
 
-  <!-- 【區塊 16】核心動態引擎 -->
+  <!-- ============================================================================
+       【區塊 16】核心動態引擎
+       ============================================================================ -->
   <script>
     // -------------------------------------------------------------
     // 1. 廠商完整中英 SEO 文案與 Banner 關聯資料庫
@@ -732,26 +866,65 @@
     });
 
     // -------------------------------------------------------------
-    // 3. 手機版抽屜選單展開/收合控制
+    // 3. 5 大分類即時過濾引擎 (Filter Tabs)
+    // -------------------------------------------------------------
+    function filterGames(category, btnElement) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.classList.remove('hide');
+        } else {
+          card.classList.add('hide');
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 4. 手機端 SEO 長文指南展開/收合
+    // -------------------------------------------------------------
+    function toggleGuide() {
+      const content = document.getElementById('guideContent');
+      const btn = document.getElementById('guideToggleBtn');
+      const isCollapsed = content.classList.toggle('collapsed');
+      
+      if (isCollapsed) {
+        btn.textContent = (currentLang === 'en') ? '▼ Read Full Provider Guide' : '▼ 展開閱讀完整廠商指南';
+      } else {
+        btn.textContent = (currentLang === 'en') ? '▲ Collapse Provider Guide' : '▲ 收合廠商指南';
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 5. 手機版抽屜選單展開/收合控制
     // -------------------------------------------------------------
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
 
     function toggleMenu() {
+      if (!mobileMenu) return;
       mobileMenu.classList.toggle('active');
-      menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+      if (menuToggle) {
+        menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+      }
     }
-    menuToggle.addEventListener('click', toggleMenu);
+    if (menuToggle) {
+      menuToggle.addEventListener('click', toggleMenu);
+    }
 
     // -------------------------------------------------------------
-    // 4. ✨ 中英雙語秒級無刷新切換引擎 (支援電腦與手機雙按鈕)
+    // 6. ✨ 中英雙語秒級無刷新切換引擎 (支援電腦版與手機抽屜雙切換)
     // -------------------------------------------------------------
     function switchLanguage() {
       currentLang = (currentLang === 'en') ? 'zh' : 'en';
       const label = (currentLang === 'en') ? '中文' : 'EN';
       
-      document.getElementById('langBtn').textContent = label;
-      document.getElementById('langBtnDrawer').textContent = label;
+      const pcBtn = document.getElementById('langBtn');
+      const drawerBtn = document.getElementById('langBtnDrawer');
+      if (pcBtn) pcBtn.textContent = label;
+      if (drawerBtn) drawerBtn.textContent = label;
 
       document.querySelectorAll('[data-en]').forEach(function(el) {
         const text = (currentLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
@@ -762,11 +935,13 @@
       document.documentElement.lang = (currentLang === 'en') ? 'en-AU' : 'zh';
     }
 
-    document.getElementById('langBtn').addEventListener('click', switchLanguage);
-    document.getElementById('langBtnDrawer').addEventListener('click', switchLanguage);
+    const pcLangBtn = document.getElementById('langBtn');
+    const drawerLangBtn = document.getElementById('langBtnDrawer');
+    if (pcLangBtn) pcLangBtn.addEventListener('click', switchLanguage);
+    if (drawerLangBtn) drawerLangBtn.addEventListener('click', switchLanguage);
 
     // -------------------------------------------------------------
-    // 5. 🎯 動態跳轉引擎 (支援個別按鈕自訂 data-href 網址 + 參數無損繼承)
+    // 7. 🎯 動態跳轉引擎 (支援個別按鈕自訂 data-href 網址 + 參數無損繼承)
     // -------------------------------------------------------------
     function getFinalTargetUrl(customUrl) {
       // 👇👇👇【修改點 2】換案子替換預設包網註冊線 👇👇👇
@@ -776,7 +951,6 @@
       const targetObj = new URL(targetBase, window.location.origin);
       const currentParams = new URLSearchParams(window.location.search);
   
-      // 只有目標連結「自己沒有該參數」時才補上廣告參數，不覆蓋按鈕自帶專屬代理碼
       currentParams.forEach((val, key) => {
         if (!targetObj.searchParams.has(key)) {
           targetObj.searchParams.set(key, val);
@@ -808,7 +982,7 @@
     });
 
     // -------------------------------------------------------------
-    // 6. ✨ 滑鼠動態跟隨光斑
+    // 8. ✨ 滑鼠動態跟隨光斑
     // -------------------------------------------------------------
     (function() {
       const glow = document.getElementById('cursor-glow');
@@ -821,7 +995,7 @@
     })();
 
     // -------------------------------------------------------------
-    // 7. 滾動淡入 IntersectionObserver
+    // 9. 滾動淡入 IntersectionObserver
     // -------------------------------------------------------------
     (function() {
       if (!('IntersectionObserver' in window)) return;
