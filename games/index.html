@@ -401,43 +401,81 @@
         gap: 12px;
       }
 
-      /* 常駐主氣泡按鈕 */
+      /* 常駐主氣泡（電競極光綠 + 雙層立體浮雕感） */
       .social-main-btn {
-        width: 52px;
-        height: 52px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--panel-solid), rgba(0, 255, 136, 0.3));
-        border: 1.5px solid var(--magenta);
-        color: #fff;
+        background: radial-gradient(circle at 30% 30%, #00ff88, #054a2a 75%, #021c10 100%);
+        border: 1.5px solid #00ff88;
+        color: #ffffff;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.4rem;
-        box-shadow: 0 0 18px rgba(0, 255, 136, 0.4);
-        transition: all 0.25s ease;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -3px 6px rgba(0, 0, 0, 0.6);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         position: relative;
-        /* 3 秒一次循環的輕微晃動動畫 */
         animation: bubbleWiggle 3s ease-in-out infinite;
       }
 
       .social-main-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 0 26px rgba(0, 255, 136, 0.7);
+        transform: scale(1.1) rotate(4deg);
+        box-shadow: 0 0 32px rgba(0, 255, 136, 0.9), inset 0 2px 6px rgba(255, 255, 255, 0.6);
       }
 
-      /* 展開狀態時停止晃動並旋轉 */
+      /* 📡 雷達光環外擴動畫 */
+      .bubble-radar {
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(0, 255, 136, 0.7);
+        animation: radarWave 2s ease-out infinite;
+        pointer-events: none;
+      }
+      @keyframes radarWave {
+        0% { transform: scale(0.9); opacity: 0.9; }
+        100% { transform: scale(1.45); opacity: 0; }
+      }
+
+      /* 🟢 24/7 在線實時金黃小燈 */
+      .online-indicator {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 12px;
+        height: 12px;
+        background: #ffc700;
+        border: 2px solid #031c10;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #ffc700;
+        z-index: 2;
+      }
+
+      /* 圖標與展開狀態控制 */
+      .social-main-btn .chat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+      }
+      .social-main-btn .close-icon {
+        display: none;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
       .social-bubble-wrap.active .social-main-btn {
         animation: none;
-        background: rgba(3, 28, 16, 0.95);
+        background: #052d1a;
         border-color: var(--gold);
-        box-shadow: 0 0 16px rgba(255, 199, 0, 0.4);
+        box-shadow: 0 0 20px rgba(255, 199, 0, 0.5);
       }
-
-      .social-main-btn .close-icon { display: none; font-size: 1.2rem; color: var(--gold); }
-      .social-main-btn .chat-icon { display: block; }
-      .social-bubble-wrap.active .close-icon { display: block; }
+      .social-bubble-wrap.active .bubble-radar { display: none; }
       .social-bubble-wrap.active .chat-icon { display: none; }
+      .social-bubble-wrap.active .close-icon { display: block; }
 
       /* 3 秒輕輕晃動動畫關鍵影格 */
       @keyframes bubbleWiggle {
@@ -780,9 +818,25 @@
 
     <!-- 常駐主氣泡 (帶 3 秒微晃動畫) -->
     <button class="social-main-btn" id="socialMainBtn" aria-label="Toggle Social Menu">
-      <span class="main-icon chat-icon">💬</span>
-      <span class="main-icon close-icon">✕</span>
-    </button>
+    <!-- 雷達發光擴散光環 -->
+    <span class="bubble-radar"></span>
+
+    <!-- 24/7 在線小綠燈 -->
+    <span class="online-indicator"></span>
+
+    <!-- 高清客服對話 SVG (展開前) -->
+    <span class="main-icon chat-icon">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        <circle cx="9" cy="10" r="1" fill="currentColor"></circle>
+        <circle cx="12" cy="10" r="1" fill="currentColor"></circle>
+        <circle cx="15" cy="10" r="1" fill="currentColor"></circle>
+      </svg>
+    </span>
+
+    <!-- 關閉 ✕ 符號 (展開後) -->
+    <span class="main-icon close-icon">✕</span>
+  </button>
    </div>
   
 
