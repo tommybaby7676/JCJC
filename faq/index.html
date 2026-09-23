@@ -6,16 +6,16 @@
 
   <!-- 
   ================================================================================
-  ❓ 【分頁專用】常見問答與玩家客服支援・獨立信任頁 (CHEAT SHEET 小抄)
+  ❓ 【分頁專用】玩家指南、操作教學與常見問題 FAQ 支援中心 (CHEAT SHEET 小抄)
   ================================================================================
-  📌 日常換皮 3 分鐘速查指南：
-     Step 1. 【區塊 1】ACTIVE_PIXEL_ID  : 換成對應的 Meta 像素 ID
-     Step 2. 【區塊 2】SEO 標題與品牌詞  : 全域搜尋「MATE369」替換成新品牌名
-     Step 3. 【區塊 4】CSS 品牌主色調    : 保持與主頁一致，若需變色改 :root 即可
-     Step 4. 【區塊 16】defaultRegisterUrl: 換成包網註冊直出線
-     Step 5. 素材清單 (直接放於根目錄，本分頁自動透過 ../ 讀取)：
-             - logo.webp / logo.ico
-             - view.webp (龐克城市背景圖)
+  📌 日常維護與換皮 3 分鐘速查指南：
+     Step 1. 【區塊 1】ACTIVE_PIXEL_ID     : 換成對應的 Meta 像素 ID
+     Step 2. 【區塊 2】SEO 標題與品牌詞     : 全域搜尋「MATE369」替換成新品牌名
+     Step 3. 【區塊 4】CSS 品牌主色調       : 保持與主頁一致，若需變色改 :root 即可
+     Step 4. 【區塊 7】操作說明圖片存放     : 截圖直接上傳至 faq/ 資料夾內！
+             - 引用語法：<img class="guide-img" src="./step1.webp" ...>
+             - 建議比例：16:9 或 4:3 (寬度 600px~800px，壓在 50KB 內秒開)
+     Step 5. 【區塊 16】defaultRegisterUrl : 換成包網註冊直出線
   ================================================================================
   -->
 
@@ -38,8 +38,8 @@
   </script>
 
   <!-- 【區塊 2】SEO 結構與分頁標題 -->
-  <title>MATE369 | Official FAQ &amp; 24/7 Player Help Center</title>
-  <meta name="description" content="Find answers to common questions about MATE369: deposit bonuses, instant PayID withdrawals, RNG certification, wagering requirements, and 24/7 customer care.">
+  <title>MATE369 | Help Center, Operation Guides &amp; Official FAQ</title>
+  <meta name="description" content="Master MATE369 operations: PayID deposit/withdrawal guide, 12-tier VIP progression rules, interface walkthrough, and official frequently asked questions.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   
   <meta name="geo.region" content="AU">
@@ -85,7 +85,7 @@
       padding-top: var(--nav-height);
     }
 
-    /* 🏙️ 背景視覺 */
+    /* 🏙️ 主頁同款龐克背景 */
     .bg-city {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background: url('../view.webp') center top / cover no-repeat fixed;
@@ -116,7 +116,7 @@
 
     .wrap { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 
-    /* 📌 導航欄 (吸頂) */
+    /* 📌 導航欄 */
     nav {
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
       z-index: 999; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
@@ -142,14 +142,16 @@
     }
     .lang:hover { color: #fff; border-color: var(--magenta); }
 
-    /* 📱 手機功能群組 (電腦版直接隱藏) */
-    .mobile-actions { display: none !important; }
     .menu-toggle {
-      background: none; border: 1px solid var(--line);
+      display: none; background: none; border: 1px solid var(--line);
       color: var(--magenta); font-size: 1.4rem; padding: 4px 10px;
       cursor: pointer; border-radius: 4px; line-height: 1;
     }
 
+    /* 電腦版直接隱藏手機功能群 */
+    .mobile-actions { display: none !important; }
+
+    /* 📱 手機抽屜展開選單 */
     .mobile-menu {
       display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
       background: rgba(3, 28, 16, 0.98); border-bottom: 1px solid var(--line);
@@ -214,10 +216,96 @@
       background: linear-gradient(90deg, #00ff88, #25d366, #ffc700);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .sub { max-width: 720px; margin: 10px auto 0; color: var(--text); font-size: 0.98rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+    .sub { max-width: 760px; margin: 10px auto 0; color: var(--text); font-size: 0.98rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
 
-    /* ❓ 常見問答手風琴 (Accordion) 樣式 */
-    .faq-wrapper { max-width: 960px; margin: 30px auto 50px; display: grid; gap: 14px; }
+    /* ==========================================================================
+       🎮 【區塊 7】操作指南 TAB 標籤切換系統 (參考金爸爸架構，解決操作痛點)
+       ========================================================================== */
+    .tabs-nav {
+      display: flex; justify-content: center; gap: 12px; margin: 26px 0 22px; flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: var(--panel); border: 1px solid var(--line); color: var(--muted);
+      font-family: "Chakra Petch"; font-weight: 700; font-size: 0.95rem; padding: 10px 22px;
+      cursor: pointer; transition: all 0.22s ease;
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: linear-gradient(135deg, var(--panel-solid), rgba(0,255,136,0.18));
+      border-color: var(--magenta); color: #fff; box-shadow: 0 0 16px rgba(0,255,136,0.3);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeInTab 0.35s ease-in-out; }
+    @keyframes fadeInTab {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .guide-box {
+      background: var(--panel); border: 1px solid var(--line); padding: 28px;
+      margin-bottom: 40px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+    }
+    .guide-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: center;
+    }
+    
+    /* 🖼️ 教學截圖容器 (支援放置於 faq/ 資料夾內的圖片) */
+    .guide-img-wrap {
+      width: 100%; aspect-ratio: 16 / 10; background: #021a0f;
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .guide-img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .guide-img-fallback {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; padding: 20px;
+      background: linear-gradient(135deg, #053b22, #021a0f); z-index: 0;
+    }
+    .guide-img-fallback .icon { font-size: 2.2rem; margin-bottom: 8px; color: var(--magenta); }
+    .guide-img-fallback .txt { font-family: "Chakra Petch"; font-size: 0.95rem; font-weight: 700; color: #fff; }
+
+    .guide-text h3 {
+      font-family: "Chakra Petch", "Noto Sans SC"; font-size: 1.35rem; font-weight: 700;
+      font-style: italic; color: var(--gold); margin-bottom: 12px;
+    }
+    .guide-text ol, .guide-text ul {
+      padding-left: 20px; color: #DBFFEC; font-size: 0.95rem; line-height: 1.75;
+    }
+    .guide-text li { margin-bottom: 8px; }
+    .guide-text strong { color: #fff; font-weight: 700; }
+
+    /* 🏷️ 原廠合作與安全認證標誌列 (Trust Badges) */
+    .partner-ribbon {
+      background: var(--panel-solid); border: 1px solid var(--line);
+      padding: 18px 24px; margin: 0 auto 40px; text-align: center;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+    .partner-title {
+      font-family: "Chakra Petch"; font-size: 0.8rem; letter-spacing: 2px;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 12px;
+    }
+    .partner-chips {
+      display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .p-chip {
+      background: rgba(3, 28, 16, 0.85); border: 1px solid var(--line);
+      padding: 6px 14px; border-radius: 4px; font-family: "Chakra Petch";
+      font-size: 0.82rem; font-weight: 700; color: #fff; letter-spacing: 0.5px;
+    }
+    .p-chip.gold { border-color: var(--gold); color: var(--gold); }
+    .p-chip.green { border-color: var(--magenta); color: var(--magenta); }
+
+    /* ❓ 常見問答手風琴 (Accordion) */
+    .sec-head { text-align: center; margin-bottom: 24px; }
+    .eyebrow { font-family: "Chakra Petch"; font-weight: 600; font-size: 0.8rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--magenta); margin-bottom: 8px; }
+    h2 { font-family: "Chakra Petch", "Noto Sans SC"; font-weight: 700; font-style: italic; font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin-bottom: 12px; }
+    h2 em { font-style: italic; color: var(--magenta); }
+
+    .faq-wrapper { max-width: 960px; margin: 0 auto 50px; display: grid; gap: 14px; }
     .faq-card {
       background: var(--panel); border: 1px solid var(--line);
       clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
@@ -284,162 +372,54 @@
       header { padding: 20px 0 14px; }
       h1 { font-size: 2.1rem; }
       .sub { font-size: 0.92rem; }
-      .faq-question h3 { font-size: 0.96rem; }
+      
+      .tabs-nav { gap: 8px; }
+      .tab-btn { padding: 8px 14px; font-size: 0.85rem; }
+      .guide-box { padding: 18px 16px; }
+      .guide-grid { grid-template-columns: 1fr; gap: 18px; }
+      .partner-chips { gap: 8px; }
+      .p-chip { font-size: 0.75rem; padding: 5px 10px; }
       .faq-question { padding: 14px 16px; }
+      .faq-question h3 { font-size: 0.96rem; }
       .faq-answer p { font-size: 0.88rem; }
     }
 
-    /* 💬 懸浮社群氣泡容器 (固定在右下角) */
+    /* 💬 懸浮社群氣泡模組 (定稿旗艦版樣式) */
     .social-bubble-wrap {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 995;
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: flex-end;
-      gap: 12px;
+      position: fixed; bottom: 24px; right: 20px; z-index: 995;
+      display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 12px;
     }
-
-    /* 常駐主氣泡（電競極光綠 + 雙層立體浮雕感） */
     .social-main-btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
+      width: 56px; height: 56px; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #00ff88, #054a2a 75%, #021c10 100%);
-      border: 1.5px solid #00ff88;
-      color: #ffffff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1.5px solid #00ff88; color: #ffffff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -3px 6px rgba(0, 0, 0, 0.6);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      animation: bubbleWiggle 3s ease-in-out infinite;
+      position: relative; animation: bubbleWiggle 3s ease-in-out infinite;
     }
-
-    .social-main-btn:hover {
-      transform: scale(1.1) rotate(4deg);
-      box-shadow: 0 0 32px rgba(0, 255, 136, 0.9), inset 0 2px 6px rgba(255, 255, 255, 0.6);
-    }
-
-    /* 📡 雷達光環外擴動畫 */
-    .bubble-radar {
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(0, 255, 136, 0.7);
-      animation: radarWave 2s ease-out infinite;
-      pointer-events: none;
-    }
-    @keyframes radarWave {
-      0% { transform: scale(0.9); opacity: 0.9; }
-      100% { transform: scale(1.45); opacity: 0; }
-    }
-
-    /* 🟢 24/7 在線實時金黃小燈 */
-    .online-indicator {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      width: 12px;
-      height: 12px;
-      background: #ffc700;
-      border: 2px solid #031c10;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #ffc700;
-      z-index: 2;
-    }
-
-    /* 圖標與展開狀態控制 */
-    .social-main-btn .chat-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-    }
-    .social-main-btn .close-icon {
-      display: none;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .social-bubble-wrap.active .social-main-btn {
-      animation: none;
-      background: #052d1a;
-      border-color: var(--gold);
-      box-shadow: 0 0 20px rgba(255, 199, 0, 0.5);
-    }
+    .social-main-btn:hover { transform: scale(1.1) rotate(4deg); box-shadow: 0 0 32px rgba(0, 255, 136, 0.9); }
+    .bubble-radar { position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid rgba(0, 255, 136, 0.7); animation: radarWave 2s ease-out infinite; pointer-events: none; }
+    @keyframes radarWave { 0% { transform: scale(0.9); opacity: 0.9; } 100% { transform: scale(1.45); opacity: 0; } }
+    .online-indicator { position: absolute; top: 2px; right: 2px; width: 12px; height: 12px; background: #ffc700; border: 2px solid #031c10; border-radius: 50%; box-shadow: 0 0 8px #ffc700; z-index: 2; }
+    .social-main-btn .chat-icon { display: flex; align-items: center; justify-content: center; color: #ffffff; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); }
+    .social-main-btn .close-icon { display: none; font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+    .social-bubble-wrap.active .social-main-btn { animation: none; background: #052d1a; border-color: var(--gold); box-shadow: 0 0 20px rgba(255, 199, 0, 0.5); }
     .social-bubble-wrap.active .bubble-radar { display: none; }
     .social-bubble-wrap.active .chat-icon { display: none; }
     .social-bubble-wrap.active .close-icon { display: block; }
-
-    /* 3 秒輕輕晃動動畫關鍵影格 */
-    @keyframes bubbleWiggle {
-      0%, 80%, 100% { transform: rotate(0deg) scale(1); }
-      85% { transform: rotate(-12deg) scale(1.05); }
-      90% { transform: rotate(10deg) scale(1.05); }
-      95% { transform: rotate(-6deg) scale(1.03); }
-    }
-
-    /* 子項目列表 (預設隱藏) */
-    .social-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      opacity: 0;
-      transform: translateY(16px) scale(0.9);
-      pointer-events: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* 展開時浮現 */
-    .social-bubble-wrap.active .social-menu {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    /* 子項目膠囊按鈕 */
-    .social-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(4, 40, 24, 0.92);
-      border: 1px solid var(--line);
-      color: var(--text);
-      padding: 8px 14px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-family: "Chakra Petch", sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .social-item:hover {
-      border-color: var(--magenta);
-      color: var(--magenta);
-      transform: translateX(-4px);
-      box-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
-    }
-
+    @keyframes bubbleWiggle { 0%, 80%, 100% { transform: rotate(0deg) scale(1); } 85% { transform: rotate(-12deg) scale(1.05); } 90% { transform: rotate(10deg) scale(1.05); } 95% { transform: rotate(-6deg) scale(1.03); } }
+    .social-menu { display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(16px) scale(0.9); pointer-events: none; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    .social-bubble-wrap.active .social-menu { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .social-item { display: flex; align-items: center; gap: 10px; background: rgba(4, 40, 24, 0.92); border: 1px solid var(--line); color: var(--text); padding: 8px 14px; border-radius: 30px; text-decoration: none; font-family: "Chakra Petch", sans-serif; font-weight: 700; font-size: 0.85rem; backdrop-filter: blur(10px); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); transition: all 0.2s ease; white-space: nowrap; }
+    .social-item:hover { border-color: var(--magenta); color: var(--magenta); transform: translateX(-4px); box-shadow: 0 0 14px rgba(0, 255, 136, 0.3); }
     .social-item svg { stroke: var(--magenta); }
     .social-item:hover svg { stroke: var(--gold); }
-
-    /* 手機端微調尺寸 */
     @media (max-width: 768px) {
       .social-bubble-wrap { bottom: 18px; right: 14px; }
       .social-main-btn { width: 46px; height: 46px; font-size: 1.25rem; }
       .social-item { padding: 7px 12px; font-size: 0.8rem; }
     }
-    
   </style>
 </head>
 
@@ -451,7 +431,7 @@
   <div class="scan"></div>
   <div id="cursor-glow"></div>
 
-  <!-- 【區塊 6】頂部導航欄 (具備已調試好的手機專屬動作群) -->
+  <!-- 【區塊 6】頂部導航欄 (統一雙向閉環) -->
   <nav>
     <div class="nav-in">
       <a class="logo-box" href="../">
@@ -459,13 +439,13 @@
         <span class="logo-fallback"><span class="dot"></span><span>MATE369</span></span>
       </a>
 
-      <!-- 電腦版選單 (此處 FAQ 為 active 高亮) -->
+      <!-- 電腦版選單 -->
       <div class="nav-links">
         <a data-en="Home" data-zh="首頁" href="../">Home</a>
         <a data-en="Games" data-zh="精選遊戲" href="../games/">Games</a>
         <a data-en="Features" data-zh="特色優勢" href="../features/">Features</a>
         <a data-en="FAQ" data-zh="常見問題" class="active" href="./">FAQ</a>
-        <a data-en="about" data-zh="關於我們" href="../about/">about</a>
+        <a data-en="About" data-zh="關於我們" href="../about/">About</a>
         <button class="lang" id="langBtn">EN</button>
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
       </div>
@@ -473,7 +453,7 @@
       <!-- 手機端功能按鈕群 (語言 + 立即註冊 + 漢堡) -->
       <div class="mobile-actions" style="display:flex; align-items:center; gap:8px;">
         <button class="lang" id="langBtnTop" style="padding:4px 8px; font-size:0.75rem;">EN</button>
-        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);" style="padding:6px 12px !important; font-size:0.78rem !important;">Register</a>
+        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);" style="padding:6px 10px !important; font-size:0.78rem !important;">Register</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
       </div>
     </div>
@@ -485,7 +465,7 @@
     <a data-en="Games" data-zh="精選遊戲" href="../games/">Games</a>
     <a data-en="Features" data-zh="特色優勢" href="../features/">Features</a>
     <a data-en="FAQ" data-zh="常見問題" class="active" href="./">FAQ</a>
-    <a data-en="about" data-zh="關於我們" href="../about/">about</a>
+    <a data-en="About" data-zh="關於我們" href="../about/">About</a>
     <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
       <span style="font-family:'Chakra Petch'; font-size:0.9rem; color:var(--muted);">Language:</span>
       <button class="lang" id="langBtnDrawer">EN</button>
@@ -498,108 +478,248 @@
     <header class="reveal">
       <div class="badge">
         <span class="pulse"></span>
-        <span data-en="OFFICIAL PLAYER HELP &amp; KNOWLEDGE BASE" data-zh="官方玩家幫助與知識庫">OFFICIAL PLAYER HELP &amp; KNOWLEDGE BASE</span>
+        <span data-en="OFFICIAL HELP CENTER &amp; WALKTHROUGHS" data-zh="官方玩家指南與操作知識庫">OFFICIAL HELP CENTER &amp; WALKTHROUGHS</span>
       </div>
 
       <h1>
-        <span class="l1" data-en="FREQUENTLY ASKED" data-zh="常見問題解答">FREQUENTLY ASKED</span>
-        <span class="l2" data-en="QUESTIONS &amp; POLICIES" data-zh="與官方政策指引">QUESTIONS &amp; POLICIES</span>
+        <span class="l1" data-en="PLAYER GUIDES" data-zh="平台新手指南">PLAYER GUIDES</span>
+        <span class="l2" data-en="&amp; FREQUENTLY ASKED QUESTIONS" data-zh="與常見問題答疑">&amp; FREQUENTLY ASKED QUESTIONS</span>
       </h1>
 
-      <p class="sub" data-en="Everything you need to know about claiming welcome promotions, instant AUD PayID withdrawals, certified RNG fairness, and responsible gameplay."
-                     data-zh="全方位解答您所關心的迎新彩金領取、PayID 即時結算到帳、國際 RNG 公平認證及理性博弈規範。">
-        Everything you need to know about claiming welcome promotions, instant AUD PayID withdrawals, certified RNG fairness, and responsible gameplay.
+      <p class="sub" data-en="Master platform features in minutes: AUD PayID instant settlement walkthrough, 12-tier VIP progression rules, and certified fair play standards."
+                     data-zh="數分鐘快速掌握平台精髓：澳洲 PayID 秒級存提款流程、12 級 VIP 晉升與返水制度、國際第三方認證公平性解答。">
+        Master platform features in minutes: AUD PayID instant settlement walkthrough, 12-tier VIP progression rules, and certified fair play standards.
       </p>
     </header>
 
-    <!-- ❓ 常見問答風琴摺 (Accordion List) -->
-    <div class="faq-wrapper reveal">
-      
-      <!-- Q1 -->
-      <div class="faq-card" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          <h3 data-en="How do I claim the 'Deposit $20 Get $70' welcome bonus?" data-zh="如何領取「充 $20 送 $50 (得 $70)」的迎新特惠？">How do I claim the 'Deposit $20 Get $70' welcome bonus?</h3>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p data-en="Simply complete your 30-second registration, head to the Promotion center within your account dashboard, opt into the welcome package, and make your first qualifying $20 deposit. The $50 bonus is instantly matched to your balance."
-             data-zh="只需完成 30 秒簡易帳號註冊，進入會員中心「優惠活動」頁面勾選專屬迎新禮包，並完成首次 $20 入金。系統將即時自動發放 $50 體驗彩金至您的錢包，總計 $70 資金可立即暢玩全館遊戲。">
-            Simply complete your 30-second registration, head to the Promotion center within your account dashboard, opt into the welcome package, and make your first qualifying $20 deposit.
-          </p>
+    <!-- 
+    ==========================================================================
+    🎮 【區塊 7】操作說明 TAB 標籤切換系統 (參考金爸爸形式，化繁為簡)
+    ==========================================================================
+    💡 小抄：想要換圖，直接上傳至 faq/ 資料夾，寫 src="./你的圖.webp" 即可！
+    -->
+    <section class="reveal">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchGuideTab('tab-payid', this)" data-en="💳 PayID Deposit &amp; Withdrawal" data-zh="💳 PayID 存提款教學">💳 PayID Deposit &amp; Withdrawal</button>
+        <button class="tab-btn" onclick="switchGuideTab('tab-vip', this)" data-en="👑 12-Tier VIP Rules" data-zh="👑 12 級 VIP 晉升規則">👑 12-Tier VIP Rules</button>
+        <button class="tab-btn" onclick="switchGuideTab('tab-interface', this)" data-en="📱 Lobby &amp; Game Guide" data-zh="📱 大廳與介面功能導引">📱 Lobby &amp; Game Guide</button>
+      </div>
+
+      <!-- Tab 1: PayID 存提款指南 -->
+      <div class="tab-content active" id="tab-payid">
+        <div class="guide-box">
+          <div class="guide-grid">
+            <div class="guide-img-wrap">
+              <!-- 🖼️ 圖片放於 faq/guide_payid.webp -->
+              <img class="guide-img" src="./guide_payid.webp" alt="PayID Banking Guide" onerror="this.style.display='none';">
+              <div class="guide-img-fallback">
+                <div class="icon">⚡</div>
+                <div class="txt">INSTANT AUD PAYID GATEWAY</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-top:4px;">No hidden fees · Minutes settlement</div>
+              </div>
+            </div>
+            <div class="guide-text">
+              <h3 data-en="Instant AUD PayID Settlement Guide" data-zh="澳洲原生 PayID 即時存提款流程">Instant AUD PayID Settlement Guide</h3>
+              <ol>
+                <li data-en="<strong>Deposit:</strong> Log into your account, click 'Deposit', choose PayID, and transfer directly via your Australian banking app (CommBank, NAB, ANZ, Westpac)."
+                    data-zh="<strong>存款入金：</strong>登入會員中心點擊「存款」，選擇 PayID 通道，透過您的澳洲銀行 APP（如 CommBank、NAB、ANZ、Westpac）掃碼或輸入帳號即時完成劃帳。">
+                  <strong>Deposit:</strong> Log into your account, click 'Deposit', choose PayID, and transfer directly via your Australian banking app.
+                </li>
+                <li data-en="<strong>Zero Conversion Loss:</strong> All transactions are conducted in native AUD, eliminating foreign exchange conversion fees completely."
+                    data-zh="<strong>零匯率折損：</strong>全流程採用原生澳幣（AUD）結算，徹底杜絕跨國匯差與銀行手續費扣除。">
+                  <strong>Zero Conversion Loss:</strong> All transactions are conducted in native AUD, eliminating foreign exchange fees completely.
+                </li>
+                <li data-en="<strong>Fast Automated Payout:</strong> Once wagering requirements are met, submit your PayID withdrawal. Audited requests are released automatically within minutes."
+                    data-zh="<strong>極速自動出款：</strong>達到活動有效流水後即可送出提款申請，系統全自動清算，數分鐘內直撥至您的個人銀行帳戶。">
+                  <strong>Fast Automated Payout:</strong> Once wagering conditions are met, requests clear into your account within minutes.
+                </li>
+              </ol>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Q2 -->
-      <div class="faq-card" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          <h3 data-en="What are the average withdrawal processing times in Australia?" data-zh="在澳洲本地提款平均需要多久時間到帳？">What are the average withdrawal processing times in Australia?</h3>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p data-en="Local Australian payouts via PayID and direct bank transfer are handled through our automated settlement gateway. Once your turnover conditions are met, requests are audited and typically clear into your account within minutes."
-             data-zh="透過澳洲本地 PayID 與銀行快速轉帳的提款申請，均由全自動清算通道處理。在達到相應活動流水門檻後，出款審核通常數分鐘內即可自動劃劃入您的澳洲銀行帳戶，無任何手續費與匯差折損。">
-            Local Australian payouts via PayID and direct bank transfer are handled through our automated settlement gateway. Once turnover conditions are met, funds typically clear within minutes.
-          </p>
-        </div>
-      </div>
-
-      <!-- Q3 -->
-      <div class="faq-card" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          <h3 data-en="Are the pokie games certified and provably fair?" data-zh="平台上的所有拉霸機台是否具備合規認證與公平性？">Are the pokie games certified and provably fair?</h3>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p data-en="Yes, absolutely. All titles from partners like Pragmatic Play, BNG, and PG Soft utilize validated Random Number Generators (RNG) audited by accredited laboratories such as eCOGRA and iTech Labs to guarantee purely random results."
-             data-zh="是的，絕對合規。平台全線引入 Pragmatic Play、BNG、PG Soft 等國際一線大廠，所有機台皆採用通過 eCOGRA 與 iTech Labs 等獨立國際權威實驗室審計的隨機亂數演算法（RNG），確保每一次旋轉完全隨機公正。">
-            Yes, absolutely. All titles utilize validated Random Number Generators (RNG) audited by accredited laboratories such as eCOGRA and iTech Labs.
-          </p>
-        </div>
-      </div>
-
-      <!-- Q4 -->
-      <div class="faq-card" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          <h3 data-en="Do I need to download a mobile app to play on iPhone or Android?" data-zh="在 iPhone 或 Android 手機上遊玩需要下載獨立 APP 嗎？">Do I need to download a mobile app to play on iPhone or Android?</h3>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p data-en="No download is required. Our platform is built on native HTML5 protocols optimized for Safari on iOS and Chrome on Android. You can simply add the site to your Home Screen for a full-screen, native application feel."
-             data-zh="完全不需要下載任何安裝檔案。平台架構採用純原生 HTML5 協議開發，深度適配 iOS Safari 與 Android 各大主流瀏覽器。您可直接將網頁「加入主畫面」，即可獲得宛如原生 APP 的沉浸式全螢幕操作體驗。">
-            No download is required. Our platform is built on native HTML5 protocols optimized for Safari on iOS and Chrome on Android.
-          </p>
+      <!-- Tab 2: VIP 規則介紹 -->
+      <div class="tab-content" id="tab-vip">
+        <div class="guide-box">
+          <div class="guide-grid">
+            <div class="guide-img-wrap">
+              <!-- 🖼️ 圖片放於 faq/guide_vip.webp -->
+              <img class="guide-img" src="./guide_vip.webp" alt="12-Tier VIP Rules" onerror="this.style.display='none';">
+              <div class="guide-img-fallback">
+                <div class="icon">👑</div>
+                <div class="txt">12-TIER LIFETIME VIP SYSTEM</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-top:4px;">Accumulated turnover · Never reset</div>
+              </div>
+            </div>
+            <div class="guide-text">
+              <h3 data-en="VIP Loyalty Progression &amp; Rebates" data-zh="12 級 VIP 終身晉升與每週返還規範">VIP Loyalty Progression &amp; Rebates</h3>
+              <ul>
+                <li data-en="<strong>Automatic Upgrades:</strong> VIP levels are calculated automatically based on your cumulative valid turnover. Once reached, tier levels never downgrade."
+                    data-zh="<strong>全自動晉升：</strong>系統即時依據您的累積有效流水進行計算升級，晉升門檻永不清零，終身享有對應層級特權。">
+                  <strong>Automatic Upgrades:</strong> VIP levels track total turnover automatically. Status levels never downgrade.
+                </li>
+                <li data-en="<strong>Weekly Loss Rebates:</strong> Eligible accounts receive automated cashback every Monday based on net losses, helping sustain long-term sessions."
+                    data-zh="<strong>每週虧損返還：</strong>每週一系統自動派發 5%~15% 的虧損保障金，無需手動申請，為您的長線娛樂提供堅實後盾。">
+                  <strong>Weekly Loss Rebates:</strong> Receive automated cashback every Monday based on net losses.
+                </li>
+                <li data-en="<strong>Priority Service:</strong> Higher tiers unlock dedicated VIP managers, elevated single-transaction limits, and exclusive birthday cash rewards."
+                    data-zh="<strong>尊榮專屬服務：</strong>高等級會員解鎖 24/7 一對一 VIP 私人管家、更高額的單筆提款額度與客製化生日驚喜禮包。">
+                  <strong>Priority Service:</strong> Unlock dedicated VIP managers, higher payout limits, and birthday gifts.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Q5 -->
-      <div class="faq-card" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          <h3 data-en="How does the 12-Tier VIP Loyalty Program work?" data-zh="12 級 VIP 會員晉升制度如何計算與運作？">How does the 12-Tier VIP Loyalty Program work?</h3>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p data-en="VIP progress tracks your total accumulated turnover automatically. Status levels never reset, and as you ascend through tiers, you unlock higher weekly loss rebates, prioritized high-limit withdrawals, and personalized birthday gifts."
-             data-zh="VIP 等級由系統全自動根據您的累積有效流水進行即時累計，晉升門檻永不清零。隨著等級逐級提升，您將陸續解鎖更高比例的每週虧損返還、極速高額提款綠色通道以及專屬客製化生日驚喜禮遇。">
-            VIP progress tracks your total accumulated turnover automatically. Status levels never reset, unlocking higher loss rebates and personalized gifts.
-          </p>
+      <!-- Tab 3: 大廳與介面指引 -->
+      <div class="tab-content" id="tab-interface">
+        <div class="guide-box">
+          <div class="guide-grid">
+            <div class="guide-img-wrap">
+              <!-- 🖼️ 圖片放於 faq/guide_lobby.webp -->
+              <img class="guide-img" src="./guide_lobby.webp" alt="Lobby Interface Guide" onerror="this.style.display='none';">
+              <div class="guide-img-fallback">
+                <div class="icon">📱</div>
+                <div class="txt">NATIVE HTML5 LOBBY WALKTHROUGH</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-top:4px;">Multi-provider search · Full-screen play</div>
+              </div>
+            </div>
+            <div class="guide-text">
+              <h3 data-en="Lobby Navigation &amp; Mobile Shortcuts" data-zh="遊戲大廳搜尋與手機桌面捷徑">Lobby Navigation &amp; Mobile Shortcuts</h3>
+              <ul>
+                <li data-en="<strong>Provider Filter &amp; Search:</strong> Easily filter titles by provider (Pragmatic Play, BNG, PG Soft) or search specific pokie names for instant access."
+                    data-zh="<strong>原廠篩選與精準搜尋：</strong>大廳支援依遊戲大廠（Pragmatic、BNG、PG Soft）分類篩選，或直接輸入拉霸機關鍵字秒速入座。">
+                  <strong>Provider Filter &amp; Search:</strong> Easily filter titles by provider or search specific game titles.
+                </li>
+                <li data-en="<strong>Native Full-Screen Feel:</strong> On iOS Safari or Android Chrome, select 'Add to Home Screen' to launch games in distraction-free full-screen mode."
+                    data-zh="<strong>加入主畫面捷徑：</strong>在手機 Safari 或 Chrome 點擊「加入主畫面」，無需下載安裝檔，即可享有全螢幕沉浸式原生 APP 體驗。">
+                  <strong>Native Full-Screen Feel:</strong> Select 'Add to Home Screen' for distraction-free full-screen mode.
+                </li>
+                <li data-en="<strong>Instant Live Chat:</strong> Encountering session issues? Tap the floating chat bubble at the bottom-right corner for sub-minute live support."
+                    data-zh="<strong>即時在線客服：</strong>遊玩或存提款若有疑問，點擊右下角的發光客服氣泡即可快速連繫真人客服團隊。">
+                  <strong>Instant Live Chat:</strong> Tap the floating bubble at the bottom-right corner for sub-minute support.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Q6 -->
-      <div class="faq-card" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          <h3 data-en="What should I do if my deposit or game session experiences an error?" data-zh="若在入金結算或遊戲連線時遇到異常該如何處理？">What should I do if my deposit or game session experiences an error?</h3>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p data-en="Our multilingual support team is available 24/7 via the live chat icon located on every page. Provide your registered username and transaction ID for immediate sub-minute technical resolution."
-             data-zh="我們的雙語真人客服團隊全年無休 24/7 在線。您只需點擊頁面上的在線客服圖示，提供您的註冊帳號與交易明細編號，專屬客服專員將在數分鐘內為您排查並排除故障。">
-            Our multilingual support team is available 24/7 via the live chat icon. Provide your registered username and transaction ID for immediate resolution.
-          </p>
-        </div>
+    <!-- 🏷️ 原廠合作與安全認證標誌列 (Trust Badges) -->
+    <div class="partner-ribbon reveal">
+      <div class="partner-title" data-en="CERTIFIED PROVIDERS &amp; FINANCIAL STANDARDS" data-zh="國際認證供應商與金融資安標準">
+        CERTIFIED PROVIDERS &amp; FINANCIAL STANDARDS
       </div>
-
+      <div class="partner-chips">
+        <span class="p-chip gold">PRAGMATIC PLAY</span>
+        <span class="p-chip gold">BNG HOLD &amp; WIN</span>
+        <span class="p-chip gold">PG SOFT</span>
+        <span class="p-chip green">PAYID AUD</span>
+        <span class="p-chip green">USDT CRYPTO</span>
+        <span class="p-chip">eCOGRA AUDITED</span>
+        <span class="p-chip">TLS 1.3 CIPHER</span>
+        <span class="p-chip">18+ RESPONSIBLE</span>
+      </div>
     </div>
+
+    <!-- ❓ 常見問答手風琴 (Accordion List) -->
+    <section class="reveal">
+      <div class="sec-head">
+        <div class="eyebrow" data-en="FREQUENTLY ASKED QUESTIONS" data-zh="核心疑難解答">FREQUENTLY ASKED QUESTIONS</div>
+        <h2 data-en="CLEAR ANSWERS <em>TO YOUR QUESTIONS</em>" data-zh="透明政策 <em>即時解開您的疑惑</em>">CLEAR ANSWERS <em>TO YOUR QUESTIONS</em></h2>
+      </div>
+
+      <div class="faq-wrapper">
+        
+        <!-- Q1 -->
+        <div class="faq-card" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <h3 data-en="How do I claim the 'Deposit $20 Get $70' welcome bonus?" data-zh="如何領取「充 $20 送 $50 (得 $70)」的迎新特惠？">How do I claim the 'Deposit $20 Get $70' welcome bonus?</h3>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p data-en="Simply complete your 30-second registration, head to the Promotion center within your account dashboard, opt into the welcome package, and make your first qualifying $20 deposit. The $50 bonus is instantly matched to your balance."
+               data-zh="只需完成 30 秒簡易帳號註冊，進入會員中心「優惠活動」頁面勾選專屬迎新禮包，並完成首次 $20 入金。系統將即時自動發放 $50 體驗彩金至您的錢包，總計 $70 資金可立即暢玩全館遊戲。">
+              Simply complete your 30-second registration, head to the Promotion center within your account dashboard, opt into the welcome package, and make your first qualifying $20 deposit.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-card" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <h3 data-en="What are the average withdrawal processing times in Australia?" data-zh="在澳洲本地提款平均需要多久時間到帳？">What are the average withdrawal processing times in Australia?</h3>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p data-en="Local Australian payouts via PayID and direct bank transfer are handled through our automated settlement gateway. Once your turnover conditions are met, requests are audited and typically clear into your account within minutes."
+               data-zh="透過澳洲本地 PayID 與銀行快速轉帳的提款申請，均由全自動清算通道處理。在達到相應活動流水門檻後，出款審核通常數分鐘內即可自動劃入您的澳洲銀行帳戶，無任何手續費與匯差折損。">
+              Local Australian payouts via PayID and direct bank transfer are handled through our automated settlement gateway. Once turnover conditions are met, funds typically clear within minutes.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-card" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <h3 data-en="Are the pokie games certified and provably fair?" data-zh="平台上的所有拉霸機台是否具備合規認證與公平性？">Are the pokie games certified and provably fair?</h3>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p data-en="Yes, absolutely. All titles from partners like Pragmatic Play, BNG, and PG Soft utilize validated Random Number Generators (RNG) audited by accredited laboratories such as eCOGRA and iTech Labs to guarantee purely random results."
+               data-zh="是的，絕對合規。平台全線引入 Pragmatic Play、BNG、PG Soft 等國際一線大廠，所有機台皆採用通過 eCOGRA 與 iTech Labs 等獨立國際權威實驗室審計的隨機亂數演算法（RNG），確保每一次旋轉完全隨機公正。">
+              Yes, absolutely. All titles utilize validated Random Number Generators (RNG) audited by accredited laboratories such as eCOGRA and iTech Labs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-card" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <h3 data-en="Do I need to download a mobile app to play on iPhone or Android?" data-zh="在 iPhone 或 Android 手機上遊玩需要下載獨立 APP 嗎？">Do I need to download a mobile app to play on iPhone or Android?</h3>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p data-en="No download is required. Our platform is built on native HTML5 protocols optimized for Safari on iOS and Chrome on Android. You can simply add the site to your Home Screen for a full-screen, native application feel."
+               data-zh="完全不需要下載任何安裝檔案。平台架構採用純原生 HTML5 協議開發，深度適配 iOS Safari 與 Android 各大主流瀏覽器。您可直接將網頁「加入主畫面」，即可獲得宛如原生 APP 的沉浸式全螢幕操作體驗。">
+              No download is required. Our platform is built on native HTML5 protocols optimized for Safari on iOS and Chrome on Android.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-card" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <h3 data-en="How does the 12-Tier VIP Loyalty Program work?" data-zh="12 級 VIP 會員晉升制度如何計算與運作？">How does the 12-Tier VIP Loyalty Program work?</h3>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p data-en="VIP progress tracks your total accumulated turnover automatically. Status levels never reset, and as you ascend through tiers, you unlock higher weekly loss rebates, prioritized high-limit withdrawals, and personalized birthday gifts."
+               data-zh="VIP 等級由系統全自動根據您的累積有效流水進行即時累計，晉升門檻永不清零。隨著等級逐級提升，您將陸續解鎖更高比例的每週虧損返還、極速高額提款綠色通道以及專屬客製化生日驚喜禮遇。">
+              VIP progress tracks your total accumulated turnover automatically. Status levels never reset, unlocking higher loss rebates and personalized gifts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-card" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <h3 data-en="What should I do if my deposit or game session experiences an error?" data-zh="若在入金結算或遊戲連線時遇到異常該如何處理？">What should I do if my deposit or game session experiences an error?</h3>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p data-en="Our multilingual support team is available 24/7 via the live chat icon located on every page. Provide your registered username and transaction ID for immediate sub-minute technical resolution."
+               data-zh="我們的雙語真人客服團隊全年無休 24/7 在線。您只需點擊頁面上的在線客服圖示，提供您的註冊帳號與交易明細編號，專屬客服專員將在數分鐘內為您排查並排除故障。">
+              Our multilingual support team is available 24/7 via the live chat icon. Provide your registered username and transaction ID for immediate resolution.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
 
     <!-- 💬 客服聯繫小卡 -->
     <div class="support-card reveal">
@@ -608,7 +728,7 @@
          data-zh="專業技術與金流客服專員全天候在線，隨時為您提供入金提款、帳號設定及遊戲操作的即時協助。">
         Our dedicated support specialists are on standby around the clock to assist you with payments, account settings, and game inquiries.
       </p>
-      <a class="btn btn-primary track-outbound" data-href="" data-en="CONTACT LIVE SUPPORT ›" data-zh="聯絡在線真人客服 ›" href="javascript:void(0);">
+      <a class="btn btn-primary track-outbound" data-href="https://t.me/mate369_official" data-en="CONTACT LIVE SUPPORT ›" data-zh="聯絡在線真人客服 ›" href="javascript:void(0);">
         CONTACT LIVE SUPPORT ›
       </a>
     </div>
@@ -636,6 +756,7 @@
         <a href="../games/" data-en="Games" data-zh="精選遊戲">Games</a>
         <a href="../features/" data-en="Features" data-zh="特色優勢">Features</a>
         <a href="./" data-en="FAQ" data-zh="常見問答">FAQ</a>
+        <a href="../about/" data-en="About" data-zh="關於我們">About</a>
       </div>
       <div style="max-width: 820px; margin: 18px auto; line-height: 1.6; font-size: 0.85rem; color: var(--muted);"
            data-en="Read official policies, terms of bonus redemption, and fair gaming standards. Please gamble responsibly. 18+ only."
@@ -652,9 +773,7 @@
 
   <!-- 💬 懸浮社群氣泡模組 (定稿旗艦版：雷達光環 + 在線燈 + 3秒微晃 + 展開選單) -->
   <div class="social-bubble-wrap" id="socialBubbleWrap">
-    <!-- 展開的子按鈕選單 (由下往上冒出) -->
     <div class="social-menu" id="socialMenu">
-      <!-- 子項目 1: 官方 Telegram -->
       <a class="social-item track-outbound" data-href="https://t.me/mate369_official" href="javascript:void(0);" title="Telegram">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21.5 2L2 9.5l7 3 2.5 7.5 3-4 5.5 3.5L21.5 2z"/>
@@ -662,7 +781,6 @@
         <span class="social-text">Telegram</span>
       </a>
 
-      <!-- 子項目 2: 24/7 在線客服 -->
       <a class="social-item track-outbound" data-href="https://x.com/Mate369_ofcl" href="javascript:void(0);" title="X">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -670,7 +788,6 @@
         <span class="social-text">X</span>
       </a>
 
-      <!-- 子項目 3: WhatsApp (若不需要整行刪除即可) -->
       <a class="social-item track-outbound" data-href="https://wa.me/61469363369" href="javascript:void(0);" title="WhatsApp">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
@@ -679,7 +796,6 @@
       </a>
     </div>
 
-    <!-- 常駐主氣泡 (帶 3 秒微晃動畫 + 高清對話 SVG) -->
     <button class="social-main-btn" id="socialMainBtn" aria-label="Toggle Social Menu">
       <span class="bubble-radar"></span>
       <span class="online-indicator"></span>
@@ -697,12 +813,25 @@
 
   <!-- 【區塊 16】核心動態引擎 -->
   <script>
-    // 1. FAQ 手風琴折疊控制
+    // 1. 操作指南 TAB 標籤切換控制
+    function switchGuideTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(function(content) {
+        content.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      const activeContent = document.getElementById(tabId);
+      if (activeContent) activeContent.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    // 2. FAQ 手風琴折疊控制
     function toggleFaq(card) {
       card.classList.toggle('open');
     }
 
-    // 2. 手機版抽屜選單控制
+    // 3. 手機版抽屜選單控制
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
 
@@ -717,7 +846,7 @@
       menuToggle.addEventListener('click', toggleMenu);
     }
 
-    // 3. ✨ 雙語即時切換引擎
+    // 4. ✨ 雙語即時切換引擎
     function switchLanguage() {
       let currentLang = (document.documentElement.lang === 'zh') ? 'en' : 'zh';
       const label = (currentLang === 'en') ? '中文' : 'EN';
@@ -743,7 +872,7 @@
     if (drawerLangBtn) drawerLangBtn.addEventListener('click', switchLanguage);
     if (topLangBtn) topLangBtn.addEventListener('click', switchLanguage);
 
-    // 4. 🎯 動態跳轉引擎 (廣告參數無損繼承)
+    // 5. 🎯 動態跳轉引擎 (廣告參數無損繼承)
     function getFinalTargetUrl(customUrl) {
       const defaultRegisterUrl = "https://www.mate369.com/Register?p=JC";
       const targetBase = (customUrl && customUrl.trim() !== "") ? customUrl.trim() : defaultRegisterUrl;
@@ -775,7 +904,7 @@
       setTimeout(function() { window.location.href = destination; }, 150);
     });
 
-    // 5. ✨ 滑鼠跟隨光斑
+    // 6. ✨ 滑鼠跟隨光斑
     (function() {
       const glow = document.getElementById('cursor-glow');
       if (window.matchMedia('(hover: none)').matches || !glow) return;
@@ -785,7 +914,7 @@
       });
     })();
 
-    // 6. 滾動淡入
+    // 7. 滾動淡入
     (function() {
       if (!('IntersectionObserver' in window)) return;
       const io = new IntersectionObserver(function(entries) {
@@ -802,26 +931,23 @@
       });
     })();
 
-    // 💬 懸浮社群氣泡點擊開關與全域點擊收合控制
+    // 8. 💬 懸浮社群氣泡點擊開關與全域點擊收合控制
     (function() {
       const wrap = document.getElementById('socialBubbleWrap');
       const mainBtn = document.getElementById('socialMainBtn');
       if (!wrap || !mainBtn) return;
 
-      // 點擊主氣泡切換開關
       mainBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         wrap.classList.toggle('active');
       });
 
-      // 點擊頁面其他空白處時自動收合
       document.addEventListener('click', function(e) {
         if (!wrap.contains(e.target)) {
           wrap.classList.remove('active');
         }
       });
     })();
-    
   </script>
 </body>
 </html>
