@@ -8,16 +8,17 @@
   ================================================================================
   ⭐ 【分頁專用】特色優勢、站內活動與全端支援規格頁 (CHEAT SHEET 小抄)
   ================================================================================
-  📌 日常換皮 3 分鐘速查指南：
+  📌 日常換皮與圖片管理速查指南：
      Step 1. 【區塊 1】ACTIVE_PIXEL_ID     : 換成對應的 Meta 像素 ID
      Step 2. 【區塊 2】SEO 標題與品牌詞     : 全域搜尋「MATE369」替換成新品牌名
-     Step 3. 【區塊 4】CSS 品牌主色調       : 保持與主頁一致，若需變色改 :root 即可
-     Step 4. 【區塊 7】站內熱門活動卡片區   : 每個卡片均有圖片欄位與尺寸規格小抄，換圖直接改 src
+     Step 3. 【區塊 7】活動卡片圖片存放與路徑：
+             - 建議尺寸：寬 640px ~ 800px、高 360px ~ 450px (標準 16:9 比例)
+             - 格式建議：.webp 最佳 (單張建議 40KB ~ 80KB，秒開不卡)
+             - 存放位置：直接上傳到 features/ 資料夾內！
+             - 引用語法：<img class="promo-img" src="./promo1.webp" ...>
+             - 圖片保護：圖片自適應縮放，100% 完整顯示、絕不裁切、無任何色框遮擋！
+     Step 4. 【手機端折疊】：若活動超過 3 個，手機端自動收合並顯示「查看更多」按鈕。
      Step 5. 【區塊 16】defaultRegisterUrl : 換成包網註冊直出線
-     Step 6. 素材清單 (放於根目錄，分頁透過 ../ 讀取)：
-             - logo.webp / logo.ico
-             - view.webp (龐克背景圖)
-             - promo1.webp / promo2.webp / promo3.webp (活動橫幅圖片)
   ================================================================================
   -->
 
@@ -226,13 +227,13 @@
     h2 em { font-style: italic; color: var(--magenta); }
 
     /* ==========================================================================
-       🎁 【區塊 7 樣式】站內熱門活動卡片區 (對齊精選遊戲 Banner 視覺)
+       🎁 【區塊 7】站內活動卡片區 (乾淨無壓框、比例自適應絕不裁切)
        ========================================================================== */
     .promo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-bottom: 35px;
+      gap: 20px;
+      margin-bottom: 25px;
     }
     .promo-card {
       background: var(--panel);
@@ -251,70 +252,55 @@
       transform: translateY(-4px);
     }
     
-    /* 🖼️ 活動橫幅圖外容器 (固定 16:9 比例) */
+    /* 🖼️ 自適應 16:9 Banner 視窗 (不給固定像素高度，杜絕裁切) */
     .promo-banner {
       width: 100%;
-      height: 150px;
+      aspect-ratio: 16 / 9;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, #053b22, #021a0f);
+      background: #021a0f;
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid rgba(0, 255, 136, 0.15);
     }
     
-    /* 🖼️ 實體圖片填滿樣式與懸停放大 */
+    /* 🖼️ 實體圖片填滿且自適應，滑鼠移入微放大 */
     .promo-img {
-      position: absolute;
-      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 1;
+      display: block;
       transition: transform 0.35s ease;
     }
     .promo-card:hover .promo-img {
-      transform: scale(1.06);
+      transform: scale(1.05);
     }
 
-    /* 🏷️ 活動專屬標籤 */
-    .promo-tag {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(3, 28, 16, 0.92);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-family: "Chakra Petch";
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      padding: 3px 8px;
-      border-radius: 2px;
-      text-transform: uppercase;
-      z-index: 3;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
-
-    /* 💡 圖片載入前的備援視覺 (破圖或尚未放圖時顯示) */
+    /* 💡 圖片尚未上傳或破圖時的備援漸層底色與文字 */
     .promo-banner-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 10px;
+      padding: 12px;
+      background: linear-gradient(135deg, #053b22, #021a0f);
       z-index: 0;
     }
     .promo-banner-title {
       font-family: "Chakra Petch", sans-serif;
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 900;
       font-style: italic;
       color: #fff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-      line-height: 1.1;
+      line-height: 1.2;
     }
     .promo-banner-highlight {
       font-family: "Chakra Petch", sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 900;
       font-style: italic;
       background: linear-gradient(90deg, #ffc700, #00ff88);
@@ -334,7 +320,7 @@
     }
     .promo-info h3 {
       font-family: "Chakra Petch", "Noto Sans SC";
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 700;
       font-style: italic;
       color: #ffffff;
@@ -343,13 +329,37 @@
     .promo-info p {
       color: var(--muted);
       font-size: 0.88rem;
-      line-height: 1.5;
+      line-height: 1.55;
       margin-bottom: 14px;
     }
     .promo-btn {
       width: 100%;
       padding: 10px 14px;
       font-size: 0.88rem;
+    }
+
+    /* 📱 手機端「查看更多活動」按鈕 (電腦端預設隱藏) */
+    .promo-toggle-wrap {
+      display: none;
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    .btn-toggle-more {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--magenta);
+      font-family: "Chakra Petch";
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 10px 24px;
+      cursor: pointer;
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+      transition: 0.2s;
+    }
+    .btn-toggle-more:hover {
+      border-color: var(--magenta);
+      background: rgba(0, 255, 136, 0.08);
+      color: #fff;
     }
 
     /* 4 大核心特色卡片 */
@@ -426,12 +436,29 @@
       h1 { font-size: 2.1rem; }
       .sub { font-size: 0.92rem; }
       
-      .promo-grid { grid-template-columns: 1fr; gap: 14px; }
-      .promo-banner { height: 160px; }
+      /* 手機端單欄排列 */
+      .promo-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
+      
+      /* 📱 手機端：第 3 個以後的卡片預設隱藏，等待點擊展開 */
+      .promo-grid .promo-card:nth-child(n+4) {
+        display: none;
+      }
+      /* 展開狀態全部顯現 */
+      .promo-grid.expanded .promo-card:nth-child(n+4) {
+        display: flex;
+        animation: fadeInCard 0.35s ease;
+      }
+      .promo-toggle-wrap { display: block; } /* 顯示查看更多按鈕 */
+
       .feat-grid { grid-template-columns: 1fr; gap: 14px; }
       .vip-tiers-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .plat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .spec-grid { grid-template-columns: 1fr; gap: 10px; }
+    }
+
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* 💬 懸浮社群氣泡模組 (定稿旗艦版樣式) */
@@ -544,27 +571,25 @@
 
     <!-- 
     ==========================================================================
-    🎁 【區塊 7】站內熱門活動卡片區 (填補圖 1 框選處，對齊圖 2 電競 Banner 質感)
+    🎁 【區塊 7】站內熱門活動卡片區 (乾淨 Banner、不裁切、支援手機折疊)
     ==========================================================================
-    💡 小白換圖與規格指南 (Cheat Sheet)：
-       - 建議尺寸：寬 600px ~ 800px、高 340px ~ 450px (標準 16:9 或 2:1 寬屏比例)
-       - 格式建議：優先使用 .webp 格式 (每張建議控制在 40KB ~ 80KB 內，秒開不卡頓)
-       - 存放位置：直接將圖片放於專案根目錄，此處預設使用 ../promo1.webp 等路徑
-       - 防破圖保護：代碼自帶 onerror 自動容錯，若圖片尚未上傳會自動以科技漸層備援文字顯示，絕不破版
+    💡 小白換圖指南 (Cheat Sheet)：
+       - 存放位置：直接上傳到 features/ 資料夾內！
+       - 引用方式：直接寫 src="./你的圖片名.webp"
+       - 尺寸建議：寬 640px ~ 800px、高 360px ~ 450px (標準 16:9)
+       - 擴充方式：隨意新增第 4、第 5 個活動，手機端會自動收合在第 3 個之後！
     ==========================================================================
     -->
     <section class="reveal">
-      <div class="promo-grid">
+      <div class="promo-grid" id="promoGrid">
         
         <!-- 🎯 活動卡 1：迎新豪禮 -->
         <div class="promo-card">
           <div class="promo-banner">
-            <span class="promo-tag" data-en="WELCOME OFFER" data-zh="新人專屬首儲">WELCOME OFFER</span>
-            
-            <!-- 🖼️ 【卡片 1 圖片位】：建議上傳 promo1.webp 至根目錄，尺寸 640x360px -->
-            <img class="promo-img" src="../promo1.webp" alt="Deposit $20 Get $70 Promo Banner" onerror="this.style.display='none';">
+            <!-- 🖼️ 圖片放於 features/promo1.webp，乾淨呈現不壓字 -->
+            <img class="promo-img" src="./promo1.webp" alt="Deposit $20 Get $70 Promo Banner" onerror="this.style.display='none';">
 
-            <!-- 💡 備援文字 (若圖片尚未上傳或載入失敗，會自動顯現此科技文字) -->
+            <!-- 💡 備援文字 (只有在 promo1.webp 還沒上傳時會顯示) -->
             <div class="promo-banner-text">
               <div class="promo-banner-title" data-en="DEPOSIT $20" data-zh="充值 AU$20">DEPOSIT $20</div>
               <div class="promo-banner-highlight" data-en="GET $70 TOTAL" data-zh="立得 AU$70 總額">GET $70 TOTAL</div>
@@ -588,12 +613,9 @@
         <!-- 🎯 活動卡 2：VIP 每週返水 -->
         <div class="promo-card">
           <div class="promo-banner">
-            <span class="promo-tag" data-en="WEEKLY REBATE" data-zh="每週虧損返還">WEEKLY REBATE</span>
-            
-            <!-- 🖼️ 【卡片 2 圖片位】：建議上傳 promo2.webp 至根目錄，尺寸 640x360px -->
-            <img class="promo-img" src="../promo2.webp" alt="VIP Weekly Loss Rebate Banner" onerror="this.style.display='none';">
+            <!-- 🖼️ 圖片放於 features/promo2.webp -->
+            <img class="promo-img" src="./promo2.webp" alt="VIP Weekly Loss Rebate Banner" onerror="this.style.display='none';">
 
-            <!-- 💡 備援文字 -->
             <div class="promo-banner-text">
               <div class="promo-banner-title" data-en="UP TO 15%" data-zh="高達 15%">UP TO 15%</div>
               <div class="promo-banner-highlight" data-en="UNLIMITED CASHBACK" data-zh="無上限週週返水">UNLIMITED CASHBACK</div>
@@ -617,12 +639,9 @@
         <!-- 🎯 活動卡 3：澳洲在地 PayID 秒提保證 -->
         <div class="promo-card">
           <div class="promo-banner">
-            <span class="promo-tag" data-en="FAST AUD PAYOUT" data-zh="在地極速出款">FAST AUD PAYOUT</span>
-            
-            <!-- 🖼️ 【卡片 3 圖片位】：建議上傳 promo3.webp 至根目錄，尺寸 640x360px -->
-            <img class="promo-img" src="../promo3.webp" alt="Instant PayID Payout Banner" onerror="this.style.display='none';">
+            <!-- 🖼️ 圖片放於 features/promo3.webp -->
+            <img class="promo-img" src="./promo3.webp" alt="Instant PayID Payout Banner" onerror="this.style.display='none';">
 
-            <!-- 💡 備援文字 -->
             <div class="promo-banner-text">
               <div class="promo-banner-title" data-en="PAYID INSTANT" data-zh="原生 PayID 直出">PAYID INSTANT</div>
               <div class="promo-banner-highlight" data-en="0% CONVERSION FEE" data-zh="零匯損 · 分秒到帳">0% CONVERSION FEE</div>
@@ -643,6 +662,13 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- 📱 手機端折疊切換按鈕 (超過 3 個活動自動發揮作用，電腦端自帶隱藏) -->
+      <div class="promo-toggle-wrap" id="promoToggleWrap">
+        <button class="btn-toggle-more" id="promoToggleBtn" data-en="VIEW MORE PROMOTIONS ▾" data-zh="查看更多官方活動 ▾">
+          VIEW MORE PROMOTIONS ▾
+        </button>
       </div>
     </section>
 
@@ -730,7 +756,7 @@
           <span>Windows / macOS</span>
         </div>
         <div class="chip">
-          <svg class="chip-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg class="chip-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
           <span>HTML5 Web</span>
         </div>
       </div>
@@ -812,7 +838,7 @@
 
       <a class="social-item track-outbound" data-href="https://wa.me/61469363369" href="javascript:void(0);" title="WhatsApp">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
         <span class="social-text">WhatsApp</span>
       </a>
@@ -949,6 +975,32 @@
       document.addEventListener('click', function(e) {
         if (!wrap.contains(e.target)) {
           wrap.classList.remove('active');
+        }
+      });
+    })();
+
+    // 7. 📱 手機端「查看更多活動 / 收合」切換邏輯
+    (function() {
+      const grid = document.getElementById('promoGrid');
+      const toggleBtn = document.getElementById('promoToggleBtn');
+      if (!grid || !toggleBtn) return;
+
+      // 如果總卡片數小於等於 3，完全隱藏查看更多按鈕
+      const cards = grid.querySelectorAll('.promo-card');
+      if (cards.length <= 3) {
+        const toggleWrap = document.getElementById('promoToggleWrap');
+        if (toggleWrap) toggleWrap.style.display = 'none';
+        return;
+      }
+
+      toggleBtn.addEventListener('click', function() {
+        const isExpanded = grid.classList.toggle('expanded');
+        const currentLang = document.documentElement.lang === 'zh' ? 'zh' : 'en';
+
+        if (isExpanded) {
+          toggleBtn.textContent = (currentLang === 'zh') ? '收合活動列表 ▴' : 'COLLAPSE OFFERS ▴';
+        } else {
+          toggleBtn.textContent = (currentLang === 'zh') ? '查看更多官方活動 ▾' : 'VIEW MORE PROMOTIONS ▾';
         }
       });
     })();
