@@ -350,32 +350,34 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+    /* 🎡 原廠 Logo 卡槽與等比自平衡容器 */
     .partner-logo-card {
-      background: var(--panel-solid);
+      background: rgba(4, 40, 24, 0.75);
       border: 1px solid var(--line);
       border-radius: 6px;
-      padding: 8px 18px;
       height: 52px;
-      min-width: 130px;
+      width: 135px; /* 給予固定寬度，讓所有卡槽排列整齊 */
+      padding: 6px 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      flex-shrink: 0;
       transition: 0.2s;
     }
     .partner-logo-card:hover {
       border-color: var(--magenta);
       box-shadow: 0 0 16px rgba(0,255,136,0.3);
     }
-    /* Logo 圖片自相容：限制最大高度 30px、寬度 110px，等比置中不變形 */
+    /* Logo 圖片統一縮放比例：不管原圖長寬為何，都完美居中且視覺大小一致 */
     .partner-logo-img {
-      max-height: 30px;
-      max-width: 110px;
-      width: auto;
-      height: auto;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      max-height: 34px;
+      max-width: 105px;
+      object-fit: contain; /* 等比縮放，不切圖不變形 */
       display: block;
-      filter: brightness(0.92) contrast(1.08);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
     /* 文字型備援 Logo (圖片尚未就緒時自動呈現) */
     .partner-logo-txt {
@@ -488,7 +490,7 @@
       }
       /* 左側固定凍結列：寬度固定 34%，高度 100% 貼齊容器 */
       .vip-freeze-left {
-        flex: 0 0 34%;
+        flex: 0 0 32%;
         z-index: 2;
         border-right: 2px solid var(--magenta);
         box-shadow: 4px 0 10px rgba(0,0,0,0.7);
@@ -496,8 +498,8 @@
       }
       .vip-freeze-left img {
         width: 100%;
-        height: 100%;
-        object-fit: fill; /* 強制水平橫線嚴格等高對齊 */
+        height: auto;
+        object-fit: contain; /* 保持原比例不拉扯 */
         display: block;
       }
       /* 右側滑動區：自由水平橫向捲動，高度 100% 貼齊容器 */
@@ -508,10 +510,10 @@
         display: flex;
       }
       .vip-scroll-right img {
-        height: 100%;
+        height: 100%; /* 高度與左欄自動對齊 */
+        width: auto;   /* 寬度依原圖自然展開，絕不橫向壓窄！ */
         max-width: none;
-        width: 480px; /* 原寬滑動，避免手機文字縮水看不清 */
-        object-fit: fill;
+        object-fit: contain;
         display: block;
       }
 
