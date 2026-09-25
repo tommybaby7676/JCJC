@@ -285,17 +285,39 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.8); display: block; background: #021a0f;
     }
 
-    /* 👑 3-3. VIP 晉升表格：電腦端置中大橫圖寬屏展示 (上圖、下字) */
-    .vip-desktop-view {
-      display: block; text-align: center; margin-bottom: 30px;
+    /* 👑 VIP 表格響應式視窗 (電腦端居中大圖，手機端原生高畫質橫向滑動) */
+    .vip-table-scroll-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      background: #021a0f;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+      text-align: center;
+      margin-bottom: 24px;
     }
-    .vip-full-img {
-      width: 100%; max-width: 1040px; border-radius: 10px; border: 1.5px solid var(--line);
-      box-shadow: 0 10px 32px rgba(0,0,0,0.8); display: inline-block;
+    .vip-responsive-table {
+      width: 100%;
+      max-width: 1040px;
+      height: auto;
+      display: inline-block;
+      vertical-align: middle;
     }
 
-    /* 📱 手機端 VIP 表格：嚴格等高對齊 (左固定 + 右捲動) */
-    .vip-mobile-scroll-container { display: none; }
+    /* 💡 手機端滑動提示條 (電腦端自動隱藏) */
+    .vip-scroll-tip {
+      display: none;
+      text-align: center;
+      font-family: "Chakra Petch";
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      animation: tipBlink 2s infinite;
+    }
+    @keyframes tipBlink { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
 
     /* 文字清單樣式 */
     .points-list { display: grid; gap: 14px; width: 100%; }
@@ -475,46 +497,12 @@
       }
       .guide-box { padding: 20px 16px; }
 
-      /* 手機端 VIP 表格：嚴格等高拉伸對齊，杜絕高度差 */
-      .vip-desktop-view { display: none !important; }
-      .vip-mobile-scroll-container {
-        display: flex !important;
-        align-items: stretch; /* 兩端高度強制拉平成一致 */
-        width: 100%;
-        border: 1.5px solid var(--line);
-        border-radius: 8px;
-        overflow: hidden;
-        background: #021a0f;
-        margin-bottom: 22px;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.8);
-      }
-      /* 左側固定凍結列：寬度固定 34%，高度 100% 貼齊容器 */
-      .vip-freeze-left {
-        flex: 0 0 32%;
-        z-index: 2;
-        border-right: 2px solid var(--magenta);
-        box-shadow: 4px 0 10px rgba(0,0,0,0.7);
-        display: flex;
-      }
-      .vip-freeze-left img {
-        width: 100%;
-        height: auto;
-        object-fit: contain; /* 保持原比例不拉扯 */
-        display: block;
-      }
-      /* 右側滑動區：自由水平橫向捲動，高度 100% 貼齊容器 */
-      .vip-scroll-right {
-        flex: 1;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        display: flex;
-      }
-      .vip-scroll-right img {
-        height: 100%; /* 高度與左欄自動對齊 */
-        width: auto;   /* 寬度依原圖自然展開，絕不橫向壓窄！ */
+      /* 📱 手機端 VIP 表格：顯現滑動提示，設定自然展開寬度 */
+      .vip-scroll-tip { display: block; }
+      .vip-responsive-table {
+        /* 手機端強制展開為 720px，確保每一個等級格子與字體都不會被擠壓變形 */
+        width: 720px;
         max-width: none;
-        object-fit: contain;
-        display: block;
       }
 
       .faq-question { padding: 14px 16px; }
@@ -759,42 +747,35 @@
       </div>
 
       <!-- ====================================================================
-           👑 3-3. 12 級 VIP 晉升規則 (電腦端大橫圖；手機端左凍結 + 右滑動對齊)
+           👑 3-3. 12 級 VIP 晉升規則 (單圖原生高畫質滾動視窗，永不變形)
            ==================================================================== -->
       <div class="tab-content" id="tab-vip">
         <div class="guide-box">
           
-          <!-- 💻 電腦端展示：完整整張大表格圖 (寬屏拉滿 1040px，上圖、下字) -->
-          <div class="vip-desktop-view">
-            <img class="vip-full-img" src="./VIPall.webp" alt="12-Tier VIP Rollover Rebate Full Table" onerror="this.src='https://via.placeholder.com/1040x600/042818/00ff88?text=Place+VIPall.webp+Here';">
+          <!-- 💡 手機端滑動提示標籤 -->
+          <div class="vip-scroll-tip" data-en="← SWIPE TO VIEW ALL TIERS →" data-zh="← 左右滑動檢視完整等級福利 →">
+            ← 左右滑動檢視完整等級福利 →
           </div>
 
-          <!-- 📱 手機端展示：左圖固定凍結 + 右圖自由滑動 (嚴格等高拉伸對齊，杜絕高低差) -->
-          <div class="vip-mobile-scroll-container">
-            <!-- ⬅️ 左列凍結圖 (VIP Level 欄位：VIP01.webp) -->
-            <div class="vip-freeze-left">
-              <img src="./VIP01.webp" alt="VIP Level Column" onerror="this.src='https://via.placeholder.com/160x520/031c10/00ff88?text=Freeze+Left';">
-            </div>
-            <!-- ➡️ 右列橫向滑動區 (各遊戲返水比例：VIP02.webp) -->
-            <div class="vip-scroll-right">
-              <img src="./VIP02.webp" alt="VIP Rebate Rates" onerror="this.src='https://via.placeholder.com/480x520/053b22/ffc700?text=Scroll+Right+%E2%86%94';">
-            </div>
+          <!-- 🖼️ 完整 VIP 表格視窗 (電腦大橫圖，手機可左右滑動且字體絕不變形) -->
+          <div class="vip-table-scroll-wrap">
+            <img class="vip-responsive-table" src="./VIPall.webp" alt="12-Tier VIP Rollover Rebate Full Table" onerror="this.src='https://via.placeholder.com/1040x600/042818/00ff88?text=Place+VIPall.webp+Here';">
           </div>
 
           <!-- 表格下方的 VIP 核心條例說明 -->
-          <div class="points-list" style="margin-top: 10px;">
+          <div class="points-list" style="margin-top: 18px;">
             <div class="point-item">
               <span class="point-badge">★</span>
               <div class="point-text" data-en="<strong>Lifetime Progression:</strong> All valid turnover from certified pokies, live casino, and sports betting accumulates permanently."
                                       data-zh="<strong>終身累計不降級：</strong>全館拉霸機、真人視訊與體育競猜之有效流水全自動永久累計，達到門檻即時自動升級。">
-                <strong>Lifetime Progression:</strong> All valid turnover from certified pokies, live casino, and sports betting accumulates permanently.
+                <strong>終身累計不降級：</strong>全館拉霸機、真人視訊與體育競猜之有效流水全自動永久累計，達到門檻即時自動升級。
               </div>
             </div>
             <div class="point-item">
               <span class="point-badge">★</span>
               <div class="point-text" data-en="<strong>Automatic Monday Settlement:</strong> Rollover rebates are calculated and dispatched directly to your wallet every Monday with zero turnover hurdles."
                                       data-zh="<strong>每週一全自動派發：</strong>流水返還金於每週一由系統自動清算直撥錢包，無繁瑣申請程序，讓您長線遊玩無後顧之憂。">
-                <strong>Automatic Monday Settlement:</strong> Rollover rebates are calculated and dispatched directly to your wallet every Monday with zero turnover hurdles.
+                <strong>每週一全自動派發：</strong>流水返還金於每週一由系統自動清算直撥錢包，無繁瑣申請程序，讓您長線遊玩無後顧之憂。
               </div>
             </div>
           </div>
